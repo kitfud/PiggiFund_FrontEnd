@@ -1,0 +1,338 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_client",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "amountDonatedInContract",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "callDisburseFunds",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "callGetBackFunds",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "callGetBalance",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "callWithdrawAll",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "contractsMade",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_fundingGoalWei",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "_fundingSummary",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_getBackFundsMin",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_clearContractMin",
+                "type": "uint256"
+            }
+        ],
+        "name": "createPiggyBankFundraiseContract",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "getAddressFromIndex",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "getAvailableWithdrawMethods",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "bool",
+                        "name": "_recoverFundsAvailable",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "_retrainFundsAvailable",
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct PiggyBankFundraiseFactory.availableWithdrawMethods",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "getContractOwner",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "getContractTimeFrames",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_startAt",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_recoverFundsAt",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_retainFundsAt",
+                        "type": "uint256"
+                    }
+                ],
+                "internalType": "struct PiggyBankFundraiseFactory.contractTimeFrame",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getCurrentBlockTimestamp",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "getFundingGoal",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "getFundingSummary",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "getGoldenDoner",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_address",
+                "type": "address"
+            }
+        ],
+        "name": "getIndexFromAddress",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "getTargetReached",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]
