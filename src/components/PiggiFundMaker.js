@@ -14,11 +14,32 @@ const abi = FactoryABI
 const [provider, setProvider] = useState(null);
 const [signer, setSigner] = useState(null);
 const [contract, setContract] = useState(null);
+const [defaultAccount, setDefaultAccount] = useState(null);
+const [walletBalance, setWalletBalance] = useState(null);
 
 return (
     <>
-   <WalletConnect address={piggiFundAddress} abi={abi} setProvider = {setProvider} setSigner = {setSigner} setContract = {setContract} provider = {provider}/>
-   {signer ? <CreatePiggiFund/> : null}
+   
+   <WalletConnect 
+   defaultAccount={defaultAccount} 
+   setDefaultAccount={setDefaultAccount} 
+   walletBalance = {walletBalance} 
+   setWalletBalance={setWalletBalance} 
+   address={piggiFundAddress} 
+   abi={abi} 
+   setProvider = {setProvider} 
+   setSigner = {setSigner} 
+   setContract = {setContract} 
+   provider = {provider}/>
+
+   {signer ? 
+   <CreatePiggiFund 
+   defaultAccount={defaultAccount} 
+   walletBalance={walletBalance} 
+   setWalletBalance={setWalletBalance}
+   signer={signer} 
+   contract={contract} 
+   provider={provider}/> : null}
     </>
   )
 }

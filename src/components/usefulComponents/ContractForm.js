@@ -30,7 +30,7 @@ const handleReturnFundsPeriod =(e)=>{
   setIntErrorReturnFunds(false);
   setValueSizeErrorReturnPeriod(false);
 
-  const reg = new RegExp(/^[0-9]+([.][0-9]+)?$/);
+  const reg = new RegExp(/^\d+$/);
   const emptyString = new RegExp(/^$/);
   if(reg.test(e)|| emptyString.test(e)){
 
@@ -48,7 +48,7 @@ const handleReturnFundsPeriod =(e)=>{
     setValueSizeError(false);
 
    
-    const reg = new RegExp(/^[0-9]+([.][0-9]+)?$/);
+    const reg = new RegExp(/^\d+$/);
     const emptyString = new RegExp(/^$/);
 
     if(reg.test(e)|| emptyString.test(e)){
@@ -122,11 +122,11 @@ const handleReturnFundsPeriod =(e)=>{
     </Box>
    
     <Box >
-    <TextField helperText={intErrorReturnFunds ?'Only Complete Whole Numbers and Decimals':valueSizeErrorReturnPeriod ?'return funds value must be < claim funds value' :''} error={intErrorReturnFunds || valueSizeErrorReturnPeriod} required autoComplete="off" sx={{marginBottom:1}} label="Donator Return Begin In (min)" fullWidth id="setReturnFundsPeriod" variant="outlined" onChange={(e)=> handleReturnFundsPeriod(e.target.value)} ></TextField>
+    <TextField helperText={intErrorReturnFunds ?'Only Whole Numbers':valueSizeErrorReturnPeriod ?'return funds value must be < claim funds value' :''} error={intErrorReturnFunds || valueSizeErrorReturnPeriod} required autoComplete="off" sx={{marginBottom:1}} label="Donator Return Begin In (min)" fullWidth id="setReturnFundsPeriod" variant="outlined" onChange={(e)=> handleReturnFundsPeriod(e.target.value)} ></TextField>
     </Box>
     
     <Box >
-    <TextField helperText={intErrorClaimFunds? 'Only Complete Whole Numbers and Decimals': valueSizeError ? 'claim funds value must be > return funds value' : ''} error={intErrorClaimFunds || valueSizeError} required autoComplete="off"  label="Owner Claim Funds Begin In (min)" fullWidth id="setClaimFundsPeriod" variant="outlined" onChange={(e)=> handleClaimFundsPeriod(e.target.value)} ></TextField>
+    <TextField helperText={intErrorClaimFunds? 'Only Whole Numbers': valueSizeError ? 'claim funds value must be > return funds value' : ''} error={intErrorClaimFunds || valueSizeError} required autoComplete="off"  label="Owner Claim Funds Begin In (min)" fullWidth id="setClaimFundsPeriod" variant="outlined" onChange={(e)=> handleClaimFundsPeriod(e.target.value)} ></TextField>
     </Box>
      
  
