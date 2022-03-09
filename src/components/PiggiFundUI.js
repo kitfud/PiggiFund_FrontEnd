@@ -1,13 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import FactoryABI from "../chain-info/abi.json"
 import WalletConnect from './usefulComponents/WalletConnect';
-import CreatePiggiFund from './CreatePiggiFund';
 import {  Box, TextField, Typography, Card, Button} from "@mui/material"
+import InteractPiggiFund from './InteractPiggiFund';
 
-const PiggiFundMaker = () => {
-
-const piggiFundAddress = '0x3A2a45AE4aa8064B2Db37Fc36Fb63F45aEa43333'
-const abi = FactoryABI
+const PiggyFundUI = () => {
+  const piggiFundAddress = '0x3A2a45AE4aa8064B2Db37Fc36Fb63F45aEa43333'
+  const abi = FactoryABI
 
 const [provider, setProvider] = useState(null);
 const [signer, setSigner] = useState(null);
@@ -16,10 +15,10 @@ const [defaultAccount, setDefaultAccount] = useState(null);
 const [walletBalance, setWalletBalance] = useState(null);
 const [mostrecentcontract, setMostRecentContract] = useState(null)
 
-return (
+  return (
     <>
-   <Typography color="primary" component="h1" sx={{ fontSize: 20, fontWeight: 600, padding: 2}}>PiggiFund Maker:</Typography>
-   <WalletConnect
+    <Typography color="primary" component="h1" sx={{ fontSize: 20, fontWeight: 600, padding: 2}}>PiggiFund UI:</Typography>
+    <WalletConnect
    mostrecentcontract={mostrecentcontract} 
    defaultAccount={defaultAccount} 
    setDefaultAccount={setDefaultAccount} 
@@ -33,17 +32,9 @@ return (
    provider = {provider}
    contract={contract}/>
 
-   {signer ? 
-   <CreatePiggiFund
-   setMostRecentContract={setMostRecentContract}
-   defaultAccount={defaultAccount} 
-   walletBalance={walletBalance} 
-   setWalletBalance={setWalletBalance}
-   signer={signer} 
-   contract={contract} 
-   provider={provider}/> : null}
+   {signer ? <InteractPiggiFund/>:null}
     </>
   )
 }
 
-export default PiggiFundMaker
+export default PiggyFundUI

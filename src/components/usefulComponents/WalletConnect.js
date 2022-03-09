@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { List, ListItem, ListItemText, Button, CircularProgress, Box, TextField, Snackbar, Alert, Link, Typography, Card, CardContent, TableContainer, TableHead, Table, TableRow, TableCell, TableBody } from "@mui/material"
 import { ethers } from 'ethers'
 
-const WalletConnect = ({defaultAccount, setDefaultAccount, walletBalance, setWalletBalance, address,abi, setProvider, setSigner, setContract, provider}) => {
+const WalletConnect = ({ contract,mostrecentcontract,defaultAccount, setDefaultAccount, walletBalance, setWalletBalance, address,abi, setProvider, setSigner, setContract, provider}) => {
 
     const [connButtonText, setConnButtonText] = useState('Connect Wallet');
     const [accountchanging, setAccountChanging] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null);
+    const [yourMostRecentContract, setYourMostRecentContract] = useState(null);
     
     
 
@@ -84,6 +85,24 @@ const WalletConnect = ({defaultAccount, setDefaultAccount, walletBalance, setWal
 
     }
 
+    const checkContractOwnership = async()=>{
+        const contractIndex = await contract.getIndexFromAddress(mostrecentcontract)
+        const contractOwner = await contract.getContractOwner(contractIndex)
+        let defaultAccountUpper = String(defaultAccount).toUpperCase()
+        let contractOwnerUpper = String(contractOwner).toUpperCase()
+
+        console.log("contractOwner " + contractOwnerUpper)
+        console.log("defaultAccount " + defaultAccountUpper)
+
+    
+
+        if(contractOwnerUpper === defaultAccountUpper){
+            setYourMostRecentContract(mostrecentcontract)
+        }
+
+
+    }
+
     useEffect(() => {
 
         getWalletBalance(provider)
@@ -103,6 +122,12 @@ const WalletConnect = ({defaultAccount, setDefaultAccount, walletBalance, setWal
 
     }, [accountchanging])
 
+    useEffect(()=>{
+        console.log("contract ownership check")
+        if(mostrecentcontract){
+        checkContractOwnership()
+        }
+    },[mostrecentcontract])
 
   return (
       <>
@@ -118,7 +143,9 @@ const WalletConnect = ({defaultAccount, setDefaultAccount, walletBalance, setWal
                             <CardContent>
                                 <Typography variant="h3" sx={{ fontSize: 15 }}>Address: {defaultAccount}</Typography>
                                 <Typography variant="h3" sx={{ fontSize: 15 }}>Wallet Balance: {walletBalance}</Typography>
-                              
+                              {
+                                  yourMostRecentContract ? (<Typography variant="h3" sx={{ fontSize: 15 }} color="red">Your Recent PiggiFund Contract: {mostrecentcontract}</Typography>) : (null)
+                              }
                             </CardContent>
                         </Card>
 

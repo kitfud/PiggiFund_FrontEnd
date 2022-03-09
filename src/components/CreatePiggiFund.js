@@ -3,7 +3,7 @@ import { List, ListItem, ListItemText, Button, CircularProgress, Box, TextField,
 import ContractForm from './usefulComponents/ContractForm';
 import ContractPreview from './usefulComponents/ContractPreview';
 
-const CreatePiggiFund = ({defaultAccount, setWalletBalance, signer, contract, provider}) => {
+const CreatePiggiFund = ({setMostRecentContract,defaultAccount, setWalletBalance, signer, contract, provider}) => {
 
   const [fundingGoal,setFundingGoal] = useState("");
   const [fundingDescription,setFundingDescription] = useState("");
@@ -31,6 +31,7 @@ return (
     setClaimFundsPeriod={setClaimFundsPeriod}/>
     </>:
     <ContractPreview
+    setMostRecentContract={setMostRecentContract}
     setWalletBalance={setWalletBalance}
     defaultAccount={defaultAccount}
     signer={signer} 

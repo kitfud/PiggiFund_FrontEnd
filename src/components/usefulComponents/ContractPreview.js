@@ -1,16 +1,16 @@
 import React,{useState} from 'react'
 import { ethers,utils,BigNumber } from 'ethers'
-import {  Box, Typography, Card,List, ListItem, ListItemText,Button } from "@mui/material"
+import {  Box, Typography, Card,List, ListItem, ListItemText,Button, CircularProgress } from "@mui/material"
 
 
 
 
-const ContractPreview = ({signer, defaultAccount, setWalletBalance, contract,provider, setPreviewContract, fundingGoal, fundingDescription,returnFundsMin,claimFundsMin}) => {
+const ContractPreview = ({setMostRecentContract, defaultAccount, setWalletBalance, contract,provider, setPreviewContract, fundingGoal, fundingDescription,returnFundsMin,claimFundsMin}) => {
 
 const [processing, setProcessing] = useState(false)
 const [txhash, setTxHash] = useState(null)
 const [transactionPosted, setTransactionPosted] = useState(false)
-const [mostrecentcontract, setMostRecentContract] = useState(null)
+
 
 const [contractsMade, setContractsMade] = useState(null);
 
@@ -66,6 +66,7 @@ const isTransactionMined = async (transactionHash) => {
 
 
         if (tx && tx.blockNumber) {
+           
             setProcessing(false)
             console.log("block number assigned.")
             transactionBlockFound = true
@@ -76,7 +77,7 @@ const isTransactionMined = async (transactionHash) => {
             getWalletBalance()
             getContractsMade()
             setTransactionPosted(true)
-          
+            
 
         }
     }
@@ -87,9 +88,16 @@ const isTransactionMined = async (transactionHash) => {
 const getWalletBalance = async () => {
     // Look up the balance
     if (provider !== null && !processing && defaultAccount !== null) {
-        console.log(defaultAccount)
-        let balance = await provider.getBalance(String(defaultAccount));
-        setWalletBalance(ethers.utils.formatEther(balance))
+        console.log("checking wallet balance")
+        try{
+            let balance = await provider.getBalance(String(defaultAccount));
+            setWalletBalance(ethers.utils.formatEther(balance))
+        }
+        catch{
+            console.log("error getting balance.")
+        }
+        
+        
     }
 
 }
@@ -132,17 +140,24 @@ const ContractData = () =>{
     )
 }
   return (
-      <>
-      <ContractData/>
-
-      <Box>
-        <Box p={1}>
-        <Button sx={{p:1}} color="error" variant="contained" onClick={handleCancel}>Cancel Contract</Button>
-        <Button sx={{p:1}} color="success" variant="contained" onClick={handleCreateContract} >Create Contract</Button>
-        </Box>
-      </Box>
-      </>
-     
+      
+          !processing? (
+            <>
+            <ContractData/>
+            <Box>
+              <Box p={1}>
+              <Button sx={{p:1}} color="error" variant="contained" onClick={handleCancel}>Cancel Contract</Button>
+              <Button sx={{p:1}} color="success" variant="contained" onClick={handleCreateContract} >Create Contract</Button>
+              </Box>
+            </Box>
+            </>
+          ): 
+          (
+            <Box>
+             <CircularProgress size={26} color="primary" />   
+            </Box>
+        
+          )  
 
   )
 }
