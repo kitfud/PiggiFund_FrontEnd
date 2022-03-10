@@ -34,7 +34,7 @@ const [mostrecentcontract, setMostRecentContract] = useState(null)
    provider = {provider}
    contract={contract}/>
 
-   {signer ? <InteractPiggiFund contract={contract} />:null}
+   {signer ? <InteractPiggiFund provider={provider} contract={contract} />:null}
    </Box>
     </Grid>
   

@@ -1,10 +1,10 @@
 import React from 'react'
 import ContractDetails from './usefulComponents/ContractDetails'
 
-const InteractPiggiFund = ({contract}) => {
+const InteractPiggiFund = ({contract,provider}) => {
   return (
   <>
-    <ContractDetails contract={contract}/>
+    <ContractDetails contract={contract} provider={provider}/>
   </>
    
   )

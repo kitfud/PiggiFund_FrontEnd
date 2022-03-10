@@ -3,7 +3,7 @@ import { List, ListItem, ListItemText, Button, CircularProgress, Box, TextField,
 import { ethers } from 'ethers'
 import FormatContractDetails from './FormatContractDetails'
 
-const ContractDetails = ({contract}) => {
+const ContractDetails = ({contract,provider}) => {
 
 const [piggiContractBalance, setPiggiContractBalance] = useState(null)
 const [piggiContractAddress,setPiggiContractAddress] = useState(null)
@@ -106,6 +106,7 @@ useEffect(()=>{
 },[infoavailable])
 
   return (
+      
       !processing ?
   !infoavailable ?
     <>
@@ -121,7 +122,9 @@ useEffect(()=>{
     </CardContent>
     </Card>
     </>:
-    <FormatContractDetails 
+    <FormatContractDetails
+        infoavailable={infoavailable} 
+        provider = {provider}
         contractAddress={piggiContractAddress} 
         contractBalance={piggiContractBalance}
         withdrawMethods = {withdrawMethods}

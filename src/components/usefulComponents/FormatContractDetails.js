@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import { ethers } from 'ethers'
+
 import {Button,Box,Card,List,ListItem, ListItemText,ListItemIcon,FolderIcon} from '@mui/material'
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
@@ -7,17 +8,18 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
+import CanvasTimer from './CanvasTimer';
 
 
 
-const FormatContractDetails = ({startTime, claimTime, recoverTime, setInfoAvailable,contractAddress,contractBalance,withdrawMethods,contractOwner,contractTimes,fundingTarget,fundingDescription,goldenDoner,targetReached}) => {
+const FormatContractDetails = ({infoavailable,provider,startTime, claimTime, recoverTime, setInfoAvailable,contractAddress,contractBalance,withdrawMethods,contractOwner,contractTimes,fundingTarget,fundingDescription,goldenDoner,targetReached}) => {
 
     const [starttime,setStart]= useState(null)
     const [recovertime,setRecover]= useState(null)
     const [claimtime,setClaim] = useState(null)
+    const [currenttime, setCurrentTime] = useState(null)
 
   
-
     const processTimes = (startTime,claimTime,recoverTime)=>{
     let ds = new Date(0)
     ds.setUTCSeconds(startTime)
@@ -37,10 +39,28 @@ const FormatContractDetails = ({startTime, claimTime, recoverTime, setInfoAvaila
 
     }
 
+    function LogData(event) {
+        console.log(event)
+        setCurrentTime(event)
+    }
  
     useEffect(()=>{
         processTimes(startTime,claimTime,recoverTime)
-    },[])
+        if(infoavailable===true){
+            provider.on('block',LogData,true)
+        }
+        else{
+            console.log("cancelling event listener")
+            provider.removeListener('block', LogData,true)
+        }
+    
+        return ()=>{
+            console.log("cancelling event listener")
+            provider.removeListener('block', LogData,true)
+        }
+    },[infoavailable])
+
+
 
 
    const FormattedDetails = ()=> {
@@ -103,6 +123,13 @@ const FormatContractDetails = ({startTime, claimTime, recoverTime, setInfoAvaila
     <Box>
     <Button color="error" variant='contained'onClick={(e)=>(setInfoAvailable(false))}>Search For Another Contract</Button>
     </Box>
+    
+    <Box>
+    <CanvasTimer startTime={starttime} recoverTime={recovertime} claimTime={claimtime} currentTime={currenttime}/>
+    </Box>
+    
+   
+   
       </>
   
 
