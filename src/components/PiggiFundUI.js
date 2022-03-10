@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import FactoryABI from "../chain-info/abi.json"
 import WalletConnect from './usefulComponents/WalletConnect';
-import {  Box, TextField, Typography, Card, Button} from "@mui/material"
+import {  Box, TextField, Typography, Card, Button, Grid} from "@mui/material"
 import InteractPiggiFund from './InteractPiggiFund';
 
 const PiggyFundUI = () => {
@@ -17,6 +17,8 @@ const [mostrecentcontract, setMostRecentContract] = useState(null)
 
   return (
     <>
+    <Grid container direction="column" alignItems="center" justify="center">
+    <Box sx={{display:'block', width:'auto'}}>
     <Typography color="primary" component="h1" sx={{ fontSize: 20, fontWeight: 600, padding: 2}}>PiggiFund UI:</Typography>
     <WalletConnect
    mostrecentcontract={mostrecentcontract} 
@@ -32,7 +34,10 @@ const [mostrecentcontract, setMostRecentContract] = useState(null)
    provider = {provider}
    contract={contract}/>
 
-   {signer ? <InteractPiggiFund/>:null}
+   {signer ? <InteractPiggiFund contract={contract} />:null}
+   </Box>
+    </Grid>
+  
     </>
   )
 }
