@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { List, ListItem, ListItemText, Button, CircularProgress, Box, TextField, Snackbar, Alert, Link, Typography, Card, CardContent, TableContainer, TableHead, Table, TableRow, TableCell, TableBody } from "@mui/material"
 import { ethers } from 'ethers'
+import FormatContractDetails from './FormatContractDetails'
 
 const ContractDetails = ({contract}) => {
 
@@ -17,6 +18,7 @@ const [goldendoner, setGoldenDoner] = useState(null)
 const [targetreached, setTargetReached] = useState(null)
 
 const [infoavailable, setInfoAvailable] = useState(false)
+const [processing, setProcessing] = useState(false)
 
 
 const handleAddressChange = (event)=>{
@@ -25,6 +27,7 @@ setPiggiContractAddress(event.target.value)
 }
 
 const getContractInfo = async ()=>{
+    setProcessing(true)
 try{
 const contractIndex = await contract.getIndexFromAddress(piggiContractAddress)
 console.log("contract index " + contractIndex)
@@ -61,19 +64,25 @@ setGoldenDoner(goldenDoner)
 
 const targetReached = await contract.getTargetReached(contractIndex)
 console.log("target reached " + targetReached)
+
 setTargetReached(targetReached)
+setInfoAvailable(true)
 }
 catch{
+    setProcessing(false)
     alert("invalid input. Enter a PiggiFund address")
 }
+setProcessing(false)
 }
 
   return (
+      !processing ?
+  !infoavailable ?
     <>
    <Card variant="outlined" sx={{ backgroundColor: "beige"}}>
    <CardContent sx={{padding:0,marginTop:2, marginLeft:0.5,marginRight:0.5}}>
    <Box>
-        <TextField label="Enter PiggiFund Contract Address" autoComplete="off" fullWidth id="setAddress" variant="outlined" onChange={handleAddressChange}></TextField>
+        <TextField label="Enter PiggiFund Contract Address" autoComplete="off" fullWidth id="setAddress" variant="outlined" onChange={handleAddressChange}/>
    </Box>
 
     <Box p={1}>
@@ -81,8 +90,8 @@ catch{
     </Box>
     </CardContent>
     </Card>
-    </>
-
+    </>:
+    <FormatContractDetails/>: <Box><CircularProgress/></Box>
 
   )
 }
