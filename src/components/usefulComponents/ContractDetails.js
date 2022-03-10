@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { List, ListItem, ListItemText, Button, CircularProgress, Box, TextField, Snackbar, Alert, Link, Typography, Card, CardContent, TableContainer, TableHead, Table, TableRow, TableCell, TableBody } from "@mui/material"
 import { ethers } from 'ethers'
 import FormatContractDetails from './FormatContractDetails'
@@ -11,7 +11,13 @@ const [piggiContractIndex, setPiggiContractIndex] = useState(null)
 
 const [withdrawMethods, setWithdrawMethods] = useState(null)
 const [contractOwner, setContractOwner] = useState(null)
+
 const [contractTimes,setContractTimes] = useState(null)
+const [startTime, setStartTime] = useState(null)
+const [recoverTime, setRecoverTime] = useState(null)
+const [claimTime, setClaimTime] = useState(null)
+
+
 const [fundingTarget, setFundingTarget] = useState(null)
 const [fundingDescription, setFundingDescription] = useState(null)
 const [goldendoner, setGoldenDoner] = useState(null)
@@ -47,12 +53,21 @@ console.log("contract owner address "+ contractOwnerAddress)
 setContractOwner(contractOwnerAddress)
 
 const contractTimeFrames = await contract.getContractTimeFrames(contractIndex)
+
+let start = contractTimeFrames[0].toNumber()
+let recover = contractTimeFrames[1].toNumber()
+let claim = contractTimeFrames[2].toNumber()
+
+setStartTime(start)
+setClaimTime(claim)
+setRecoverTime(recover)
 console.log("contract time frames "+ contractTimeFrames)
 setContractTimes(contractTimeFrames)
 
 const fundingGoal = await contract.getFundingGoal(contractIndex)
-console.log("funding goal "+ fundingGoal)
-setFundingTarget(fundingGoal)
+const fundingGoalETH = ethers.utils.formatEther(fundingGoal)
+console.log("funding goal "+ fundingGoalETH)
+setFundingTarget(fundingGoalETH)
 
 const fundingSummary = await contract.getFundingSummary(contractIndex)
 console.log("funding summary "+ fundingSummary)
@@ -75,6 +90,21 @@ catch{
 setProcessing(false)
 }
 
+useEffect(()=>{
+    if(infoavailable===false){
+        setPiggiContractAddress(null)
+        setPiggiContractBalance(null)
+        setWithdrawMethods(null)
+        setContractOwner(null)
+        setContractTimes(null)
+        setFundingTarget(null)
+        setFundingDescription(null)
+        setGoldenDoner(null)
+        setTargetReached(null)
+    }
+
+},[infoavailable])
+
   return (
       !processing ?
   !infoavailable ?
@@ -91,7 +121,21 @@ setProcessing(false)
     </CardContent>
     </Card>
     </>:
-    <FormatContractDetails/>: <Box><CircularProgress/></Box>
+    <FormatContractDetails 
+        contractAddress={piggiContractAddress} 
+        contractBalance={piggiContractBalance}
+        withdrawMethods = {withdrawMethods}
+        contractOwner = {contractOwner}
+        contractTimes = {contractTimes}
+        fundingTarget = {fundingTarget}
+        fundingDescription = {fundingDescription}
+        goldenDoner = {goldendoner}
+        targetReached = {targetreached}
+        setInfoAvailable = {setInfoAvailable}
+        startTime = {startTime}
+        recoverTime = {recoverTime}
+        claimTime = {claimTime}
+        />: <Box><CircularProgress/></Box>
 
   )
 }
