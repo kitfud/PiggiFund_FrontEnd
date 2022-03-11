@@ -18,6 +18,7 @@ const FormatContractDetails = ({infoavailable,provider,startTime, claimTime, rec
     const [recovertime,setRecover]= useState(null)
     const [claimtime,setClaim] = useState(null)
     const [currenttime, setCurrentTime] = useState(null)
+    const [formattedcurrent, setFormattedCurrent] = useState(null)
 
   
     const processTimes = (startTime,claimTime,recoverTime)=>{
@@ -39,9 +40,22 @@ const FormatContractDetails = ({infoavailable,provider,startTime, claimTime, rec
 
     }
 
-    function LogData(event) {
-        console.log(event)
-        setCurrentTime(event)
+    const blockTimestamp = async(blockNum)=>{
+        const blockdata = await provider.getBlock(parseInt(blockNum))
+        return blockdata.timestamp
+
+    }
+
+    const formatCurrentTime = (blockTime) =>{
+        let bt = new Date(0)
+        bt.setUTCSeconds(parseInt(blockTime))
+        setFormattedCurrent(String(bt))
+    }
+
+   async function LogData(event) {
+        const time = await blockTimestamp(event)
+        setCurrentTime(time)
+        formatCurrentTime(time)
     }
  
     useEffect(()=>{
@@ -94,6 +108,11 @@ const FormatContractDetails = ({infoavailable,provider,startTime, claimTime, rec
 
         <ListItem>
             <ListItemIcon><AvTimerIcon/></ListItemIcon>   
+            <ListItemText> CurrentTime: {formattedcurrent}</ListItemText>
+        </ListItem>
+
+        <ListItem>
+            <ListItemIcon><AvTimerIcon/></ListItemIcon>   
             <ListItemText> StartTime: {starttime}</ListItemText>
         </ListItem>
 
@@ -106,6 +125,8 @@ const FormatContractDetails = ({infoavailable,provider,startTime, claimTime, rec
             <ListItemIcon><AvTimerIcon/></ListItemIcon>   
             <ListItemText> ClaimTime: {claimtime}</ListItemText>
         </ListItem>
+
+       
 
 
        </List>
@@ -125,7 +146,7 @@ const FormatContractDetails = ({infoavailable,provider,startTime, claimTime, rec
     </Box>
     
     <Box>
-    <CanvasTimer startTime={starttime} recoverTime={recovertime} claimTime={claimtime} currentTime={currenttime}/>
+    <CanvasTimer startTime={startTime} recoverTime={recoverTime} claimTime={claimTime} currentTime={currenttime}/>
     </Box>
     
    
