@@ -3,7 +3,7 @@ import { List, ListItem, ListItemText, Button, CircularProgress, Box, TextField,
 import { ethers } from 'ethers'
 import FormatContractDetails from './FormatContractDetails'
 
-const ContractDetails = ({contract,provider}) => {
+const ContractDetails = ({setWalletBalance, defaultAccount, signer,contract,provider}) => {
 
 const [piggiContractBalance, setPiggiContractBalance] = useState(null)
 const [piggiContractAddress,setPiggiContractAddress] = useState(null)
@@ -31,6 +31,7 @@ const handleAddressChange = (event)=>{
 console.log(event.target.value)
 setPiggiContractAddress(event.target.value)
 }
+
 
 const getContractInfo = async ()=>{
     setProcessing(true)
@@ -123,6 +124,12 @@ useEffect(()=>{
     </Card>
     </>:
     <FormatContractDetails
+        setWalletBalance={setWalletBalance}
+        defaultAccount = {defaultAccount}
+        contract = {contract}
+        piggiContractIndex = {piggiContractIndex}
+        setPiggiContractBalance={setPiggiContractBalance}
+        signer={signer}
         infoavailable={infoavailable} 
         provider = {provider}
         contractAddress={piggiContractAddress} 

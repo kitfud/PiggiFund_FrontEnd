@@ -9,10 +9,34 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import CanvasTimer from './CanvasTimer';
+import Deposit from './Deposit';
+import VisualizeDeposit from './VisualizeDeposit';
 
 
 
-const FormatContractDetails = ({infoavailable,provider,startTime, claimTime, recoverTime, setInfoAvailable,contractAddress,contractBalance,withdrawMethods,contractOwner,contractTimes,fundingTarget,fundingDescription,goldenDoner,targetReached}) => {
+
+const FormatContractDetails = ({
+    setWalletBalance,
+    defaultAccount,
+    piggiContractIndex,
+    contract,
+    setPiggiContractBalance,
+    signer,
+    infoavailable,
+    provider,
+    startTime, 
+    claimTime, 
+    recoverTime, 
+    setInfoAvailable,
+    contractAddress,
+    contractBalance,
+    withdrawMethods,
+    contractOwner,
+    contractTimes,
+    fundingTarget,
+    fundingDescription,
+    goldenDoner,
+    targetReached}) => {
 
     const [starttime,setStart]= useState(null)
     const [recovertime,setRecover]= useState(null)
@@ -145,11 +169,21 @@ const FormatContractDetails = ({infoavailable,provider,startTime, claimTime, rec
     <Button color="error" variant='contained'onClick={(e)=>(setInfoAvailable(false))}>Search For Another Contract</Button>
     </Box>
     
-    <Box>
-    <CanvasTimer startTime={startTime} recoverTime={recoverTime} claimTime={claimTime} currentTime={currenttime}/>
-    </Box>
+  
     
-   
+   <Card>
+    <Box sx={{display:'inline-block', width: 1/3}}>
+        <CanvasTimer startTime={startTime} recoverTime={recoverTime} claimTime={claimTime} currentTime={currenttime}/>
+    </Box>
+
+    <Box sx={{display:'inline-block', width:1/3}}>
+        <Deposit setWalletBalance={setWalletBalance} defaultAccount={defaultAccount} provider={provider} piggiContractIndex={piggiContractIndex} contract={contract} setPiggiContractBalance={setPiggiContractBalance} contractAddress={contractAddress} signer={signer}/>
+    </Box>
+
+    <Box sx={{display:'inline-block', width:1/3}}> 
+        <VisualizeDeposit/>
+    </Box>
+   </Card>
    
       </>
   

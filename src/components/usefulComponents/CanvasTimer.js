@@ -50,7 +50,11 @@ const CanvasTimer = ({startTime, claimTime, recoverTime,currentTime}) => {
       }, [currentTime])
 
   return (
+  
+
     <canvas ref={canvasRef} />
+   
+    
   )
 }
 

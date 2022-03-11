@@ -34,7 +34,7 @@ const [mostrecentcontract, setMostRecentContract] = useState(null)
    provider = {provider}
    contract={contract}/>
 
-   {signer ? <InteractPiggiFund provider={provider} contract={contract} />:null}
+   {signer ? <InteractPiggiFund setWalletBalance={setWalletBalance} defaultAccount={defaultAccount} provider={provider} contract={contract} signer={signer} />:null}
    </Box>
     </Grid>
   
