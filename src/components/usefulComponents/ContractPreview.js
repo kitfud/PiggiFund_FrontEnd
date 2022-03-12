@@ -70,7 +70,8 @@ const isTransactionMined = async (transactionHash) => {
             setProcessing(false)
             console.log("block number assigned.")
             transactionBlockFound = true
-            console.log("COMPLETED BLOCK: " + tx.blockNumber.toString())
+            let stringBlock = tx.blockNumber.toString()
+            console.log("COMPLETED BLOCK: " + stringBlock)
             
 
             //check balance of user wallet
@@ -92,7 +93,14 @@ const getWalletBalance = async () => {
         try{
             let stringAccount =String(defaultAccount)
             console.log("radical.strung up! " + stringAccount)
-            let balance = await provider.getBalance(stringAccount);
+            let balance;
+            try{
+                balance = await provider.getBalance(stringAccount);
+            }
+            catch{
+                console.log("definete error with balance")
+            }
+           
             console.log("gonna see how much jangle you have there...")  
             setWalletBalance(ethers.utils.formatEther(balance))
             console.log("rich is inside my friend.")
@@ -107,11 +115,34 @@ const getWalletBalance = async () => {
 }
 
 const getContractsMade = async () => {
-        const contractsMade = await contract.contractsMade()
+    let contractsMade;
+    try{
+    contractsMade = await contract.contractsMade()
+    }
+    catch{
+    console.log("problem getting contracts made. Attempting again.")
+    }
+    finally{
+    contractsMade = await contract.contractsMade()
+    }
         const stringContractsMade = contractsMade.toString()
         const stringContractsMadeNum = parseInt(contractsMade)
         setContractsMade(stringContractsMade)
-        const mostRecentContractAddress = await contract.getAddressFromIndex(stringContractsMadeNum - 1)
+        let mostRecentContractAddress;
+        try{
+            let lastContract = stringContractsMadeNum - 1
+            mostRecentContractAddress= await contract.getAddressFromIndex(lastContract)
+        }
+        catch{
+            console.log("error retreiving most recent contract address. Attempting again....")
+        }
+        finally{
+            console.log("finally....")
+            let lastContract = stringContractsMadeNum - 1
+            mostRecentContractAddress= await contract.getAddressFromIndex(lastContract)
+            
+        }
+       
         console.log("Most Recent PiggiFund Contract At:" + mostRecentContractAddress)
         setMostRecentContract(mostRecentContractAddress)
     

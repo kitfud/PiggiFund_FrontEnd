@@ -1,6 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import { ethers } from 'ethers'
-import {  Box, TextField, Typography, Card, Button,CircularProgress} from "@mui/material"
+import {  Box, 
+    TextField, 
+    Typography, 
+    Card, 
+    Button, 
+    CircularProgress, 
+    Snackbar} from "@mui/material"
 
 const Deposit = ({
     setWalletBalance,
@@ -16,6 +22,7 @@ const [deposit,setDeposit] = useState(null)
 const [interror, setIntError] = useState(false)
 const [processing, setProcessing] = useState(false)
 const [txhash, setTxHash] = useState(false)
+const [transactionPosted, setTransactionPosted] = useState(false)
 
 const handleDepositValidation =(e)=>{
     setIntError(false);
@@ -106,9 +113,14 @@ const handleDeposit = async ()=>{
         
 }
 
+const handleCloseSnack =()=>{
+    setTransactionPosted(false)
+}
+
   return (
       <>
       {
+
       !processing ?
     <Card sx={{marginBottom:20}}>
     <Typography variant="h2" sx={{ fontSize: 15, fontWeight: 600, marginBottom:2 }} >Deposit To Contract:</Typography>

@@ -33,7 +33,7 @@ barCovered = barLength-((intContractBalance*barLength)/intFundingTarget)
 
   useEffect(() => {
       processDepositRepresentation()
-      if(canvasRef.current !== null){
+      // if(canvasRef.current !== null){
       const canvas = canvasRef.current
       const context = canvas.getContext('2d')
       canvas.width = 110
@@ -41,7 +41,7 @@ barCovered = barLength-((intContractBalance*barLength)/intFundingTarget)
    
       //draw
      draw(context)
-      }
+      // }
     }, [contractBalance])
 
 return (
