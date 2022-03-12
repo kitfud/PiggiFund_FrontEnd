@@ -1,23 +1,18 @@
 import React, {useEffect,useRef} from 'react'
 
-const VisualizeDeposit = ({startTime, claimTime, recoverTime,currentTime}) => {
+const VisualizeDeposit = ({fundingTarget, contractBalance}) => {
 
   const canvasRef = useRef(null)
   const barLength = 300
   let barCovered 
 
+
   const processDepositRepresentation = () =>{
 
-    let proportionSpanCovered = ((currentTime-startTime)*barLength)/(claimTime-startTime)
-  
-    if (proportionSpanCovered>=barLength){
-      barCovered = barLength
-    }
-    else{
-      barCovered = proportionSpanCovered
-    }
+let intFundingTarget = parseFloat(fundingTarget)
+let intContractBalance = parseFloat(contractBalance)
+barCovered = barLength-((intContractBalance*barLength)/intFundingTarget)
   }
-
 
 
 
@@ -47,7 +42,7 @@ const VisualizeDeposit = ({startTime, claimTime, recoverTime,currentTime}) => {
       //draw
      draw(context)
       }
-    }, [currentTime])
+    }, [contractBalance])
 
 return (
 

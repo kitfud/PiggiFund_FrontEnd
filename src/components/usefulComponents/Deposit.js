@@ -73,8 +73,7 @@ const isTransactionMined = async (transactionHash) => {
             console.log("block number assigned.")
             console.log("COMPLETE BLOCK: " + tx.blockNumber.toString())
             updateBalance()
-            // getWalletBalance(provider)
-            // setTransactionPosted(true)
+      
             transactionBlockFound = true
         }
     }
@@ -104,18 +103,20 @@ const handleDeposit = async ()=>{
 
         }
 
-        if (document.getElementById("setDepositVal") !== null) {
-            document.getElementById("setDepositVal").value = "";
-        }
+        
 }
 
   return (
       <>
+      {
+      !processing ?
     <Card sx={{marginBottom:20}}>
     <Typography variant="h2" sx={{ fontSize: 15, fontWeight: 600, marginBottom:2 }} >Deposit To Contract:</Typography>
     <TextField id="setDepositVal" helperText={interror ?'Only Numbers and Decimals':''} error={interror} autoComplete="off" fullWidth id="setDeposit" variant="outlined" label="ETH" onChange={(e)=>(handleDepositValidation(e.target.value))} ></TextField> 
     <Button color="success" variant="contained" onClick={handleDeposit}> DEPOSIT </Button>
-    </Card>
+    </Card>: 
+        <CircularProgress sx={{marginBottom:20}}/>
+    }
   
       </>
    

@@ -170,7 +170,6 @@ const FormatContractDetails = ({
     </Box>
     
   
-    
    <Card>
     <Box sx={{display:'inline-block', width: 1/3}}>
         <CanvasTimer startTime={startTime} recoverTime={recoverTime} claimTime={claimTime} currentTime={currenttime}/>
@@ -181,7 +180,7 @@ const FormatContractDetails = ({
     </Box>
 
     <Box sx={{display:'inline-block', width:1/3}}> 
-        <VisualizeDeposit/>
+        <VisualizeDeposit fundingTarget={fundingTarget} contractBalance={contractBalance} />
     </Box>
    </Card>
    
