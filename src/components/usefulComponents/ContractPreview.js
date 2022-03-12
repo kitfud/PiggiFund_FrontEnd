@@ -90,8 +90,12 @@ const getWalletBalance = async () => {
     if (provider !== null && !processing && defaultAccount !== null) {
         console.log("checking wallet balance")
         try{
-            let balance = await provider.getBalance(String(defaultAccount));
+            let stringAccount =String(defaultAccount)
+            console.log("radical.strung up! " + stringAccount)
+            let balance = await provider.getBalance(stringAccount);
+            console.log("gonna see how much jangle you have there...")  
             setWalletBalance(ethers.utils.formatEther(balance))
+            console.log("rich is inside my friend.")
         }
         catch{
             console.log("error getting balance.")
