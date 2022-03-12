@@ -6,7 +6,10 @@ import {  Box,
     Card, 
     Button, 
     CircularProgress, 
-    Snackbar} from "@mui/material"
+    Snackbar,
+    Alert,
+    Link
+} from "@mui/material"
 
 const Deposit = ({
     setWalletBalance,
@@ -21,7 +24,7 @@ const Deposit = ({
 const [deposit,setDeposit] = useState(null)
 const [interror, setIntError] = useState(false)
 const [processing, setProcessing] = useState(false)
-const [txhash, setTxHash] = useState(false)
+const [txhash, setTxHash] = useState(null)
 const [transactionPosted, setTransactionPosted] = useState(false)
 
 const handleDepositValidation =(e)=>{
@@ -113,12 +116,25 @@ const handleDeposit = async ()=>{
         
 }
 
+
 const handleCloseSnack =()=>{
     setTransactionPosted(false)
 }
 
+useEffect(()=>{
+if(txhash !== null)
+setTransactionPosted(true)
+},[txhash])
+
   return (
       <>
+      <Snackbar anchorOrigin={{vertical:"bottom",horizontal:"center"}} open={transactionPosted} autoHideDuration={6500} onClose={handleCloseSnack}>
+        <Alert onClose={handleCloseSnack} severity="success">
+            <Typography>Deposit Was Successfull! Thank You.</Typography>
+            <Typography> Refresh receipt page if not immediatly available once clicked:</Typography>
+            <Link target="_blank" rel="noopener noreferrer" href={`https://kovan.etherscan.io/tx/${txhash}`}> Receipt </Link>
+        </Alert>
+      </Snackbar>
       {
 
       !processing ?
