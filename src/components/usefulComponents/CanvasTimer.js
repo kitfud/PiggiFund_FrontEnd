@@ -38,15 +38,15 @@ const CanvasTimer = ({startTime, claimTime, recoverTime,currentTime}) => {
 
     useEffect(() => {
         processTimeRepresentation()
-        if(canvasRef.current !== null){
-        const canvas = canvasRef.current
-        const context = canvas.getContext('2d')
+        // if(canvasRef.current !== null){
+        let canvas = canvasRef.current
+        let context = canvas.getContext('2d')
         canvas.width = 110
         canvas.height = 310
      
         //draw
        draw(context)
-        }
+        // }
       }, [currentTime])
 
   return (
