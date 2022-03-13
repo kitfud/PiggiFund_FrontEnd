@@ -86,8 +86,33 @@ const WalletConnect = ({ contract,mostrecentcontract,defaultAccount, setDefaultA
     }
 
     const checkContractOwnership = async()=>{
-        const contractIndex = await contract.getIndexFromAddress(mostrecentcontract)
-        const contractOwner = await contract.getContractOwner(contractIndex)
+        
+        let contractIndex 
+        try{
+           contractIndex = await contract.getIndexFromAddress(mostrecentcontract)
+        }
+        catch{
+            console.log("error getting contract index: ")
+        }
+        finally{
+            console.log("let's give it another go.....")
+            contractIndex = await contract.getIndexFromAddress(mostrecentcontract)
+        }
+        
+        console.log("new contract index is: "+ contractIndex)
+        
+        let contractOwner;
+        try{
+        contractOwner = await contract.getContractOwner(contractIndex)
+        }
+        catch{
+            console.log("error getting contract owner: ")
+        }
+        finally{
+            console.log("attempting one more time...")
+            contractOwner = await contract.getContractOwner(contractIndex)
+        }
+
         let defaultAccountUpper = String(defaultAccount).toUpperCase()
         let contractOwnerUpper = String(contractOwner).toUpperCase()
 

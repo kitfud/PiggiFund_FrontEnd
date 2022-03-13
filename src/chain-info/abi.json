@@ -26,6 +26,11 @@
     {
         "inputs": [
             {
+                "internalType": "address",
+                "name": "_client",
+                "type": "address"
+            },
+            {
                 "internalType": "uint256",
                 "name": "_storageIndex",
                 "type": "uint256"
@@ -38,6 +43,11 @@
     },
     {
         "inputs": [
+            {
+                "internalType": "address",
+                "name": "_client",
+                "type": "address"
+            },
             {
                 "internalType": "uint256",
                 "name": "_storageIndex",
@@ -70,6 +80,11 @@
     },
     {
         "inputs": [
+            {
+                "internalType": "address",
+                "name": "_client",
+                "type": "address"
+            },
             {
                 "internalType": "uint256",
                 "name": "_storageIndex",

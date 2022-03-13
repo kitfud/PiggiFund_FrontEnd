@@ -139,7 +139,13 @@ const getContractsMade = async () => {
         finally{
             console.log("finally....")
             let lastContract = stringContractsMadeNum - 1
+            try{
+            console.log(console.log("checking contract at this index: "+ lastContract))
             mostRecentContractAddress= await contract.getAddressFromIndex(lastContract)
+            }
+            catch{
+                console.log("Most likely VM execution error.")
+            }
             
         }
        

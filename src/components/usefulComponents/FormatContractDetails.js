@@ -17,6 +17,7 @@ import Withdraw from './Withdraw';
 
 
 const FormatContractDetails = ({
+    walletBalance,
     setWalletBalance,
     defaultAccount,
     piggiContractIndex,
@@ -70,20 +71,19 @@ const FormatContractDetails = ({
 
 const visualizeWithdrawPeriods = (currenttime,claimTime,recoverTime)=>{
 let ct = parseInt(currenttime)
-console.log("withdraw periods: "+ ct,claimTime,recoverTime)
 let rt = parseInt(recoverTime)
 let clt = parseInt(claimTime)
 
 if (ct>clt){
     setInRecoveryTime(false)
     setInClaimTime(true)
-    console.log("IN CLAIM TIME")
+   
 
 }
 else if(ct>rt){
     setInClaimTime(false)
     setInRecoveryTime(true)
-    console.log("IN RECOVER TIME")
+
 }
 else{
     setInRecoveryTime(false)
@@ -136,7 +136,7 @@ else{
 useEffect(()=>{
 // console.log("timeupdate")
 visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
-},[currenttime])
+},[currenttime,contractBalance])
 
 
    const FormattedDetails = ()=> {
@@ -210,7 +210,7 @@ visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
        <FormattedDetails/> 
     </Card>
 
-    <Box>
+    <Box sx={{marginBottom: 2}}>
     <Button color="error" variant='contained'onClick={(e)=>(setInfoAvailable(false))}>Search For Another Contract</Button>
     </Box>
     
@@ -230,8 +230,27 @@ visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
     </Box>
 
     <Box sx={{display:'inline-block', width:1/3}}>
-        <Deposit setWalletBalance={setWalletBalance} defaultAccount={defaultAccount} provider={provider} piggiContractIndex={piggiContractIndex} contract={contract} setPiggiContractBalance={setPiggiContractBalance} contractAddress={contractAddress} signer={signer}/>
-        <Withdraw/>
+        <Deposit 
+        setWalletBalance={setWalletBalance} 
+        defaultAccount={defaultAccount} 
+        provider={provider} 
+        piggiContractIndex={piggiContractIndex} 
+        contract={contract} 
+        setPiggiContractBalance={setPiggiContractBalance} 
+        contractAddress={contractAddress} 
+        signer={signer}/>
+        
+        <Withdraw
+        inRecoveryTime={inRecoveryTime}
+        provider={provider}
+        setWalletBalance={setWalletBalance}
+        piggiContractIndex={piggiContractIndex}
+        setPiggiContractBalance={setPiggiContractBalance}
+        walletBalance={walletBalance} 
+        contract={contract} 
+        contractBalance={contractBalance} 
+        account={defaultAccount} 
+        contractIndex={piggiContractIndex}/>
     </Box>
 
     <Box sx={{display:'inline-block', width:1/3}}> 

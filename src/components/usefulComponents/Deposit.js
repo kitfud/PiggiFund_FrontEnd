@@ -93,8 +93,6 @@ const isTransactionMined = async (transactionHash) => {
 const handleDeposit = async ()=>{
     setProcessing(true)
 
-    console.log(contractAddress)
-
     if (deposit=== null){
         alert('Deposit not possible with incomplete whole number or decimal.')
     }

@@ -3,7 +3,7 @@ import { List, ListItem, ListItemText, Button, CircularProgress, Box, TextField,
 import { ethers } from 'ethers'
 import FormatContractDetails from './FormatContractDetails'
 
-const ContractDetails = ({setWalletBalance, defaultAccount, signer,contract,provider}) => {
+const ContractDetails = ({walletBalance, setWalletBalance, defaultAccount, signer,contract,provider}) => {
 
 const [piggiContractBalance, setPiggiContractBalance] = useState(null)
 const [piggiContractAddress,setPiggiContractAddress] = useState(null)
@@ -106,6 +106,10 @@ useEffect(()=>{
 
 },[infoavailable])
 
+useEffect(()=>{
+console.log("Got the message in higher component on balance change.")
+},[piggiContractBalance])
+
   return (
       
       !processing ?
@@ -124,6 +128,7 @@ useEffect(()=>{
     </Card>
     </>:
     <FormatContractDetails
+        walletBalance={walletBalance}
         setWalletBalance={setWalletBalance}
         defaultAccount = {defaultAccount}
         contract = {contract}

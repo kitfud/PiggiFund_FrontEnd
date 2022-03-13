@@ -1,4 +1,5 @@
 import React,{useRef,useEffect,useState} from 'react'
+import {CircularProgress} from '@mui/material'
 
 const CanvasTimer = ({inClaimTime,inRecoveryTime, startTime, claimTime, recoverTime, currentTime}) => {
 
@@ -80,10 +81,9 @@ const CanvasTimer = ({inClaimTime,inRecoveryTime, startTime, claimTime, recoverT
       }, [currentTime])
 
   return (
-  
-
-    <canvas ref={canvasRef} />
-   
+      
+      currentTime !== null? 
+        <canvas ref={canvasRef} />: <CircularProgress/>
     
   )
 }

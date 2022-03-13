@@ -5,7 +5,7 @@ import {  Box, TextField, Typography, Card, Button, Grid} from "@mui/material"
 import InteractPiggiFund from './InteractPiggiFund';
 
 const PiggyFundUI = () => {
-  const piggiFundAddress = '0x3A2a45AE4aa8064B2Db37Fc36Fb63F45aEa43333'
+  const piggiFundAddress = '0x4D0Ef64d92e681840CCd929391D1B8CD3B175FA6'
   const abi = FactoryABI
 
 const [provider, setProvider] = useState(null);
@@ -34,7 +34,13 @@ const [mostrecentcontract, setMostRecentContract] = useState(null)
    provider = {provider}
    contract={contract}/>
 
-   {signer ? <InteractPiggiFund setWalletBalance={setWalletBalance} defaultAccount={defaultAccount} provider={provider} contract={contract} signer={signer} />:null}
+   {signer ? <InteractPiggiFund 
+   walletBalance = {walletBalance}
+   setWalletBalance={setWalletBalance} 
+   defaultAccount={defaultAccount} 
+   provider={provider} 
+   contract={contract} 
+   signer={signer} />:null}
    </Box>
     </Grid>
   
