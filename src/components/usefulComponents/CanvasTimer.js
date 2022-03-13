@@ -48,7 +48,7 @@ const CanvasTimer = ({inClaimTime,inRecoveryTime, startTime, claimTime, recoverT
         ctx.fillText("Timer",45,20)
 
         ctx.beginPath();
-        ctx.arc(10, recoveryTime+30, 5, 0, 2 * Math.PI);
+        ctx.arc(10, recoveryTime+35, 5, 0, 2 * Math.PI);
         ctx.fillStyle = recoveryCircleColor;
         ctx.fill()
         ctx.stroke();

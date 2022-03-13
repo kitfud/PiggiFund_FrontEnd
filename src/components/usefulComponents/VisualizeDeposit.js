@@ -11,6 +11,9 @@ const VisualizeDeposit = ({fundingTarget, contractBalance}) => {
 
 let intFundingTarget = parseFloat(fundingTarget)
 let intContractBalance = parseFloat(contractBalance)
+if(intContractBalance>=fundingTarget){
+  intContractBalance=fundingTarget
+}
 barCovered = barLength-((intContractBalance*barLength)/intFundingTarget)
   }
 
@@ -21,11 +24,11 @@ barCovered = barLength-((intContractBalance*barLength)/intFundingTarget)
       ctx.font = "20px Arial";
       ctx.fillText("Deposit",35,20)
 
-      ctx.fillStyle = "yellow"
+      ctx.fillStyle = "teal"
       ctx.beginPath()
       ctx.fillRect(30,30,100,barLength)
  
-      ctx.fillStyle = "teal"
+      ctx.fillStyle = "yellow"
       ctx.beginPath()
       ctx.fillRect(30,30,100,barCovered)
      

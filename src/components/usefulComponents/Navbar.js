@@ -36,7 +36,6 @@ const Navbar =() => {
 
     const classes = useStyles();
 
-
   return (
       <>
          <AppBar position="static">
