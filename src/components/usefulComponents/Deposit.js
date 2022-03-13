@@ -138,7 +138,7 @@ setTransactionPosted(true)
       {
 
       !processing ?
-    <Card sx={{marginBottom:20}}>
+    <Card sx={{marginBottom:5}}>
     <Typography variant="h2" sx={{ fontSize: 15, fontWeight: 600, marginBottom:2 }} >Deposit To Contract:</Typography>
     <TextField id="setDepositVal" helperText={interror ?'Only Numbers and Decimals':''} error={interror} autoComplete="off" fullWidth id="setDeposit" variant="outlined" label="ETH" onChange={(e)=>(handleDepositValidation(e.target.value))} ></TextField> 
     <Button color="success" variant="contained" onClick={handleDeposit}> DEPOSIT </Button>

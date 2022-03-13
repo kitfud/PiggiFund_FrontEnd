@@ -11,6 +11,7 @@ import AvTimerIcon from '@mui/icons-material/AvTimer';
 import CanvasTimer from './CanvasTimer';
 import Deposit from './Deposit';
 import VisualizeDeposit from './VisualizeDeposit';
+import Withdraw from './Withdraw';
 
 
 
@@ -230,6 +231,7 @@ visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
 
     <Box sx={{display:'inline-block', width:1/3}}>
         <Deposit setWalletBalance={setWalletBalance} defaultAccount={defaultAccount} provider={provider} piggiContractIndex={piggiContractIndex} contract={contract} setPiggiContractBalance={setPiggiContractBalance} contractAddress={contractAddress} signer={signer}/>
+        <Withdraw/>
     </Box>
 
     <Box sx={{display:'inline-block', width:1/3}}> 
