@@ -1,9 +1,10 @@
 import './App.css';
-import { createTheme, ThemeProvider, Container,Typography } from "@mui/material"
+import { createTheme, ThemeProvider, Container} from "@mui/material"
 import PiggiFundMaker from './components/PiggiFundMaker';
 import {Routes, Route,Link, Redirect} from "react-router-dom";
 import Home from './components/Home';
 import PiggiFundUI from './components/PiggiFundUI';
+import Navbar from './components/usefulComponents/Navbar';
 
 let theme = createTheme({
   palette: {
@@ -22,13 +23,14 @@ let theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
+    
     <Container className="App">
+    <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="maker" element={<PiggiFundMaker/>}/> 
         <Route path="UI" element= {<PiggiFundUI/>}/>
       </Routes>
-     
     </Container>
   </ThemeProvider>
   );
