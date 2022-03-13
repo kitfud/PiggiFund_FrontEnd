@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import { ethers } from 'ethers'
 
-import {Button,Box,Card,List,ListItem, ListItemText,ListItemIcon,FolderIcon} from '@mui/material'
+import {Button,Box,Card,List,ListItem, ListItemText,ListItemIcon,FolderIcon,CircularProgress} from '@mui/material'
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
@@ -44,6 +44,10 @@ const FormatContractDetails = ({
     const [currenttime, setCurrentTime] = useState(null)
     const [formattedcurrent, setFormattedCurrent] = useState(null)
 
+    const [inRecoveryTime,setInRecoveryTime]=useState(false)
+    const [inClaimTime, setInClaimTime]=useState(false)
+   
+
   
     const processTimes = (startTime,claimTime,recoverTime)=>{
     let ds = new Date(0)
@@ -61,8 +65,30 @@ const FormatContractDetails = ({
     console.log(dr)
    setRecover(String(dr)) 
 
-
     }
+
+const visualizeWithdrawPeriods = (currenttime,claimTime,recoverTime)=>{
+let ct = parseInt(currenttime)
+console.log("withdraw periods: "+ ct,claimTime,recoverTime)
+let rt = parseInt(recoverTime)
+let clt = parseInt(claimTime)
+
+if (ct>clt){
+    setInRecoveryTime(false)
+    setInClaimTime(true)
+    console.log("IN CLAIM TIME")
+
+}
+else if(ct>rt){
+    setInClaimTime(false)
+    setInRecoveryTime(true)
+    console.log("IN RECOVER TIME")
+}
+else{
+    setInRecoveryTime(false)
+    setInClaimTime(false)
+}
+}
 
     const blockTimestamp = async(blockNum)=>{
         const blockdata = await provider.getBlock(parseInt(blockNum))
@@ -71,19 +97,27 @@ const FormatContractDetails = ({
     }
 
     const formatCurrentTime = (blockTime) =>{
+        let bTime = parseInt(blockTime)
+        setCurrentTime(bTime)
         let bt = new Date(0)
-        bt.setUTCSeconds(parseInt(blockTime))
-        setFormattedCurrent(String(bt))
+        bt.setUTCSeconds(bTime)
+        let stringBt = String(bt)
+        setFormattedCurrent(stringBt)
     }
 
    async function LogData(event) {
+       
         const time = await blockTimestamp(event)
-        setCurrentTime(time)
+        let nowTime = parseInt(time)
+        // console.log("time is "+ nowTime)
+        setCurrentTime(nowTime)
         formatCurrentTime(time)
+     
     }
  
     useEffect(()=>{
         processTimes(startTime,claimTime,recoverTime)
+    
         if(infoavailable===true){
             provider.on('block',LogData,true)
         }
@@ -98,7 +132,10 @@ const FormatContractDetails = ({
         }
     },[infoavailable])
 
-
+useEffect(()=>{
+// console.log("timeupdate")
+visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
+},[currenttime])
 
 
    const FormattedDetails = ()=> {
@@ -127,7 +164,7 @@ const FormatContractDetails = ({
 
         <ListItem>
             <ListItemIcon><SportsScoreIcon/></ListItemIcon>   
-            <ListItemText> Funding Goal: {fundingTarget} ETH</ListItemText>
+            <ListItemText sx={{color:'black'}}> Funding Goal: {fundingTarget} ETH</ListItemText>
         </ListItem>
 
         <ListItem>
@@ -141,13 +178,20 @@ const FormatContractDetails = ({
         </ListItem>
 
         <ListItem>
-            <ListItemIcon><AvTimerIcon/></ListItemIcon>   
-            <ListItemText> RecoverTime: {recovertime}</ListItemText> 
+            <ListItemIcon><AvTimerIcon/></ListItemIcon>  
+          
+            { 
+            inRecoveryTime?
+            <ListItemText sx={{color:'green'}}> RecoverTime: {recovertime}</ListItemText> :<ListItemText sx={{color:'red'}}> RecoverTime: {recovertime}</ListItemText>
+            }
         </ListItem>
 
         <ListItem>
-            <ListItemIcon><AvTimerIcon/></ListItemIcon>   
-            <ListItemText> ClaimTime: {claimtime}</ListItemText>
+            <ListItemIcon><AvTimerIcon/></ListItemIcon>  
+            {
+            inClaimTime? 
+            <ListItemText sx={{color:'green'}}> ClaimTime: {claimtime}</ListItemText>:  <ListItemText sx={{color:'red'}}> ClaimTime: {claimtime}</ListItemText>
+            }    
         </ListItem>
 
        
@@ -172,7 +216,16 @@ const FormatContractDetails = ({
   
    <Card>
     <Box sx={{display:'inline-block', width: 1/3}}>
-        <CanvasTimer startTime={startTime} recoverTime={recoverTime} claimTime={claimTime} currentTime={currenttime}/>
+        {
+        currenttime ?
+        <CanvasTimer 
+        inClaimTime={inClaimTime}
+        inRecoveryTime={inRecoveryTime}
+        startTime={startTime}  
+        claimTime={claimTime} 
+        recoverTime={recoverTime} 
+        currentTime={currenttime}/>: <CircularProgress/>
+        }
     </Box>
 
     <Box sx={{display:'inline-block', width:1/3}}>

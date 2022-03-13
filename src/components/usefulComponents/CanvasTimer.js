@@ -1,10 +1,15 @@
-import React,{useRef,useEffect} from 'react'
+import React,{useRef,useEffect,useState} from 'react'
 
-const CanvasTimer = ({startTime, claimTime, recoverTime,currentTime}) => {
+const CanvasTimer = ({inClaimTime,inRecoveryTime, startTime, claimTime, recoverTime, currentTime}) => {
 
     const canvasRef = useRef(null)
     const barLength = 300
     let barCovered 
+    let recoveryTime
+    let recoveryCircleColor="red"
+
+    const [ct,setInClaimTime]= useState(false)
+    const [rt, setInRecoveryTime] = useState(false)
 
     const processTimeRepresentation = () =>{
   
@@ -16,6 +21,22 @@ const CanvasTimer = ({startTime, claimTime, recoverTime,currentTime}) => {
       else{
         barCovered = proportionSpanCovered
       }
+
+      recoveryTime =((recoverTime-startTime)*barLength)/(claimTime-startTime)
+      // console.log(recoveryTime)
+
+     
+      if(ct===true){
+        recoveryCircleColor="red"
+      }
+      else if(rt===true){
+        recoveryCircleColor="green"
+      }
+      else{
+        recoveryCircleColor="red"
+      }
+      
+
     }
 
 
@@ -25,6 +46,12 @@ const CanvasTimer = ({startTime, claimTime, recoverTime,currentTime}) => {
         ctx.fillStyle = "black"
         ctx.font = "20px Arial";
         ctx.fillText("Timer",45,20)
+
+        ctx.beginPath();
+        ctx.arc(10, recoveryTime+30, 5, 0, 2 * Math.PI);
+        ctx.fillStyle = recoveryCircleColor;
+        ctx.fill()
+        ctx.stroke();
 
         ctx.fillStyle = "green"
         ctx.beginPath()
@@ -37,6 +64,9 @@ const CanvasTimer = ({startTime, claimTime, recoverTime,currentTime}) => {
       }
 
     useEffect(() => {
+        setInClaimTime(inClaimTime)
+        setInRecoveryTime(inRecoveryTime)
+
         processTimeRepresentation()
         // if(canvasRef.current !== null){
         let canvas = canvasRef.current
