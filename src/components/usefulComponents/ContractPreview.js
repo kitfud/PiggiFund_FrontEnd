@@ -150,6 +150,7 @@ const getContractsMade = async () => {
             }
             finally{
                 console.log("And another one...")
+                console.log("getting contract at this index: "+ lastContract)
                 mostRecentContractAddress= await contract.getAddressFromIndex(lastContract)
             }
             
