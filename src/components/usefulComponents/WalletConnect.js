@@ -38,9 +38,8 @@ const WalletConnect = ({ contract,mostrecentcontract,defaultAccount, setDefaultA
     
     const accountChangedHandler = (newAccount) => {
         if (!accountchanging) {
+            setYourMostRecentContract(null)
             setAccountChanging(true)
-    
-    
             console.log("account change happened")
             setDefaultAccount(checkAccountType(newAccount));
             updateEthers();

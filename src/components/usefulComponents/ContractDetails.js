@@ -37,7 +37,7 @@ const getContractInfo = async ()=>{
     setProcessing(true)
 try{
 let trimAddress = piggiContractAddress.trim()
-const contractIndex = await contract.getIndexFromAddress(piggiContractAddress)
+const contractIndex = await contract.getIndexFromAddress(trimAddress)
 console.log("contract index " + contractIndex)
 setPiggiContractIndex(contractIndex)
 

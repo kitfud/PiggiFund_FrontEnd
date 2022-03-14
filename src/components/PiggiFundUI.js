@@ -21,6 +21,7 @@ const [mostrecentcontract, setMostRecentContract] = useState(null)
     <Box sx={{display:'block', width:'auto'}}>
     <Typography color="primary" component="h1" sx={{ fontSize: 20, fontWeight: 600, padding: 2}}>PiggiFund UI:</Typography>
     <WalletConnect
+    
    mostrecentcontract={mostrecentcontract} 
    defaultAccount={defaultAccount} 
    setDefaultAccount={setDefaultAccount} 
