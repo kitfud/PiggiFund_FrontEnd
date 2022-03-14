@@ -170,16 +170,16 @@ const ContractData = () =>{
      <Typography sx={{ fontSize: 20, fontWeight: 600 }} variant="h1">Contract Summary:</Typography>
       <List>
       <ListItem>
-          <ListItemText>Funding Goal: {fundingGoal} ETH</ListItemText>
+          <ListItemText>Funding Goal: {fundingGoal} ETH-> If goal met no more contributions can be made and owner can claim funds.</ListItemText>
       </ListItem>
       <ListItem>
           <ListItemText>Funding Description: {fundingDescription}</ListItemText>
       </ListItem>
       <ListItem>
-          <ListItemText>Return funds option available in {returnFundsMin} min</ListItemText>
+          <ListItemText>Funding Period Ends-> If funding goal missed, doner option for refund in {returnFundsMin} min</ListItemText>
       </ListItem>
       <ListItem>
-          <ListItemText>Claim funds option available in {claimFundsMin} min</ListItemText>
+          <ListItemText>Contract Close-> Donors can no longer get a refund. Contract owner can claim funds in {claimFundsMin} min</ListItemText>
       </ListItem>
       </List>    
       </Card>                                  
@@ -202,7 +202,7 @@ const ContractData = () =>{
           ): 
           (
             <Box>
-             <CircularProgress size={26} color="primary" />   
+             <CircularProgress sx={{marginTop:2}} size={26} color="primary" />   
             </Box>
         
           )  
