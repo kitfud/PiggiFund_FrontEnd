@@ -5,6 +5,8 @@ import {Routes, Route,Link, Redirect} from "react-router-dom";
 import Home from './components/Home';
 import PiggiFundUI from './components/PiggiFundUI';
 import Navbar from './components/usefulComponents/Navbar';
+import Contracts from './components/Contracts';
+import FactoryABI from "./chain-info/abi.json"
 
 let theme = createTheme({
   palette: {
@@ -21,6 +23,9 @@ let theme = createTheme({
 });
 
 function App() {
+  const piggiFundAddress = '0x6c8892552CbB90Adc871eDF8Ed10cFbFCC6c1072'
+  const abi = FactoryABI
+
   return (
     <ThemeProvider theme={theme}>
     
@@ -28,8 +33,9 @@ function App() {
     <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="maker" element={<PiggiFundMaker/>}/> 
-        <Route path="UI" element= {<PiggiFundUI/>}/>
+        <Route path="maker" element={<PiggiFundMaker piggiFundAddress={piggiFundAddress} abi={abi}/>}/> 
+        <Route path="ui" element= {<PiggiFundUI piggiFundAddress={piggiFundAddress} abi={abi}/>}/>
+        <Route path="contracts" element={<Contracts piggiFundAddress={piggiFundAddress} abi={abi}/>} />
       </Routes>
     </Container>
   </ThemeProvider>

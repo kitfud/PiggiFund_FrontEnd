@@ -54,7 +54,10 @@ const Navbar =() => {
             </Link>
             <Link to="/ui" className={classes.link} >
               UI
-            </Link>      
+            </Link> 
+            <Link to="/contracts" className={classes.link} >
+              Contracts
+            </Link>       
           </div>      
       </Toolbar>
     </AppBar>

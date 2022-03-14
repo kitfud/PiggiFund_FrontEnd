@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
-import FactoryABI from "../chain-info/abi.json"
 import WalletConnect from './usefulComponents/WalletConnect';
 import {  Box, TextField, Typography, Card, Button, Grid} from "@mui/material"
 import InteractPiggiFund from './InteractPiggiFund';
 
-const PiggyFundUI = () => {
-  const piggiFundAddress = '0x58d0F097216CFFF6d8d2Ca3b899f94652bd69e5f'
-  const abi = FactoryABI
+const PiggyFundUI = ({piggiFundAddress,abi}) => {
+
 
 const [provider, setProvider] = useState(null);
 const [signer, setSigner] = useState(null);
