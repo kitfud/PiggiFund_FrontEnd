@@ -120,7 +120,7 @@ const getContractsMade = async () => {
     contractsMade = await contract.contractsMade()
     }
     catch{
-    console.log("problem getting contracts made. Attempting again.")
+    console.log("ALERT, problem getting contracts made. Attempting again.")
     }
     finally{
     contractsMade = await contract.contractsMade()
@@ -128,9 +128,11 @@ const getContractsMade = async () => {
         const stringContractsMade = contractsMade.toString()
         const stringContractsMadeNum = parseInt(contractsMade)
         setContractsMade(stringContractsMade)
+
         let mostRecentContractAddress;
         try{
             let lastContract = stringContractsMadeNum - 1
+            console.log("working with this contract: "+ contract)
             mostRecentContractAddress= await contract.getAddressFromIndex(lastContract)
         }
         catch{
@@ -140,11 +142,15 @@ const getContractsMade = async () => {
             console.log("finally....")
             let lastContract = stringContractsMadeNum - 1
             try{
-            console.log(console.log("checking contract at this index: "+ lastContract))
+            console.log("checking contract at this index: "+ lastContract)
             mostRecentContractAddress= await contract.getAddressFromIndex(lastContract)
             }
             catch{
                 console.log("Most likely VM execution error.")
+            }
+            finally{
+                console.log("And another one...")
+                mostRecentContractAddress= await contract.getAddressFromIndex(lastContract)
             }
             
         }

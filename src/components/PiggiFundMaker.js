@@ -6,7 +6,7 @@ import {  Box, TextField, Typography, Card, Button} from "@mui/material"
 
 const PiggiFundMaker = () => {
 
-const piggiFundAddress = '0x4D0Ef64d92e681840CCd929391D1B8CD3B175FA6'
+const piggiFundAddress = '0x58d0F097216CFFF6d8d2Ca3b899f94652bd69e5f'
 const abi = FactoryABI
 
 const [provider, setProvider] = useState(null);

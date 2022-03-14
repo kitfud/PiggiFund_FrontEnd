@@ -12,6 +12,8 @@ import {  Box,
 } from "@mui/material"
 
 const Deposit = ({
+    fundingTargetReached,
+    inClaimTime,
     setWalletBalance,
     defaultAccount,
     piggiContractIndex, 
@@ -43,12 +45,36 @@ const handleDepositValidation =(e)=>{
 }
 
 const updateWallet = async() =>{
-    let balance = await provider.getBalance(defaultAccount);
-    setWalletBalance(ethers.utils.formatEther(balance))
+    let balance;
+    try{
+        await provider.getBalance(defaultAccount);
+    }
+    catch{
+        console.log("Error getting wallet balance. Not cool.")
+    }
+    finally{
+        console.log("attempting again...")
+        await provider.getBalance(defaultAccount);
+    }
+    if (balance){
+    let formatBalance = ethers.utils.formatEther(balance)
+    setWalletBalance(formatBalance)
+    }
 }
 
 const updateBalance =async()=>{
-    const currentBalance = await contract.callGetBalance(piggiContractIndex)
+    let currentBalance
+    try{
+    currentBalance = await contract.callGetBalance(piggiContractIndex)
+    }
+    catch{
+    console.log("Error retreiving contract balance after that deposit.SORRY.")
+    }
+    finally{
+    console.log("Attempting again....with index: "+piggiContractIndex)
+    currentBalance = await contract.callGetBalance(piggiContractIndex)   
+    }
+    
     const balanceETH = ethers.utils.formatEther(currentBalance)
     console.log("balance is: "+ balanceETH)
     setPiggiContractBalance(balanceETH)
@@ -124,25 +150,30 @@ if(txhash !== null)
 setTransactionPosted(true)
 },[txhash])
 
+
+
+
   return (
       <>
-      <Snackbar anchorOrigin={{vertical:"bottom",horizontal:"center"}} open={transactionPosted} autoHideDuration={6500} onClose={handleCloseSnack}>
+      <Snackbar anchorOrigin={{vertical:"top",horizontal:"center"}} open={transactionPosted} autoHideDuration={6500} onClose={handleCloseSnack}>
         <Alert onClose={handleCloseSnack} severity="success">
             <Typography>Deposit Was Successfull! Thank You.</Typography>
             <Typography> Refresh receipt page if not immediatly available once clicked:</Typography>
             <Link target="_blank" rel="noopener noreferrer" href={`https://kovan.etherscan.io/tx/${txhash}`}> Receipt </Link>
         </Alert>
       </Snackbar>
-      {
 
-      !processing ?
-    <Card sx={{marginBottom:5}}>
-    <Typography variant="h2" sx={{ fontSize: 15, fontWeight: 600, marginBottom:2 }} >Deposit To Contract:</Typography>
-    <TextField id="setDepositVal" helperText={interror ?'Only Numbers and Decimals':''} error={interror} autoComplete="off" fullWidth id="setDeposit" variant="outlined" label="ETH" onChange={(e)=>(handleDepositValidation(e.target.value))} ></TextField> 
-    <Button color="success" variant="contained" onClick={handleDeposit}> DEPOSIT </Button>
-    </Card>: 
-        <CircularProgress sx={{marginBottom:20}}/>
-    }
+    {!inClaimTime && !fundingTargetReached?
+    (
+        !processing ?
+        <Card sx={{marginBottom:5}}>
+        <Typography variant="h2" sx={{ fontSize: 15, fontWeight: 600, marginBottom:2 }} >Deposit To Contract:</Typography>
+        <TextField id="setDepositVal" helperText={interror ?'Only Numbers and Decimals':''} error={interror} autoComplete="off" fullWidth id="setDeposit"  variant="outlined" label="ETH" onChange={(e)=>(handleDepositValidation(e.target.value))} ></TextField> 
+        <Button color="success" variant="contained" onClick={handleDeposit}> DEPOSIT </Button>
+        </Card>: 
+            <CircularProgress sx={{marginBottom:20}}/>  
+    ):null}    
+     
   
       </>
    

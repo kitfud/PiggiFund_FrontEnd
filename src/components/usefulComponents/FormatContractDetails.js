@@ -13,7 +13,7 @@ import Deposit from './Deposit';
 import VisualizeDeposit from './VisualizeDeposit';
 import Withdraw from './Withdraw';
 
-
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
 
 const FormatContractDetails = ({
@@ -48,7 +48,60 @@ const FormatContractDetails = ({
 
     const [inRecoveryTime,setInRecoveryTime]=useState(false)
     const [inClaimTime, setInClaimTime]=useState(false)
-   
+
+    const [fundsWithdrawn, setFundsWithdrawn] = useState(false)
+
+    const [fundingTargetReached, setFundingTargetReached] = useState(false)
+    const [goldenDonerElect, setGoldenDonerElect] = useState(null)
+
+
+
+    const checkIfFundsWithdrawn = async ()=>{
+    let areFundsWithdrawn;
+      try{
+        areFundsWithdrawn = await contract.getCheckFundsWithdrawn(piggiContractIndex)
+        setFundsWithdrawn(areFundsWithdrawn)
+        console.log("have funds been withdrawn: "+ areFundsWithdrawn)
+      }
+      catch{
+        console.log("Error checking if funds have been withdrawn.")
+      }
+      
+    }
+
+    const checkGoldenDoner = async ()=>{
+        let theGoldenOne; 
+        try{
+            let contractIndex = parseInt(piggiContractIndex)
+            theGoldenOne = await contract.getGoldenDoner(contractIndex)
+            console.log("the golden one is: "+ theGoldenOne)
+            if(theGoldenOne !== '0x0000000000000000000000000000000000000000'){
+            setGoldenDonerElect(theGoldenOne)
+            }
+        }
+        catch{
+            console.log("Problem Getting the golden doner.")
+        }
+    }
+
+
+
+    const checkIfFundingTargetReached = async ()=>{
+        let targetReached;
+      try{
+        targetReached = await contract.getTargetReached(piggiContractIndex)
+        setFundingTargetReached(targetReached)
+        console.log("has target been reached: "+ targetReached)
+        if (targetReached === true){
+            checkGoldenDoner()
+        }
+
+      }
+      catch{
+        console.log("Error checking if funding target has been reached.")
+      }
+      
+    }
 
   
     const processTimes = (startTime,claimTime,recoverTime)=>{
@@ -116,7 +169,7 @@ else{
      
     }
  
-    useEffect(()=>{
+useEffect(()=>{
         processTimes(startTime,claimTime,recoverTime)
     
         if(infoavailable===true){
@@ -136,7 +189,13 @@ else{
 useEffect(()=>{
 // console.log("timeupdate")
 visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
+checkIfFundsWithdrawn()
+checkIfFundingTargetReached()
 },[currenttime,contractBalance])
+
+useEffect(()=>{
+checkGoldenDoner()
+},[targetReached])
 
 
    const FormattedDetails = ()=> {
@@ -168,10 +227,6 @@ visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
             <ListItemText sx={{color:'black'}}> Funding Goal: {fundingTarget} ETH</ListItemText>
         </ListItem>
 
-        <ListItem>
-            <ListItemIcon><AvTimerIcon/></ListItemIcon>   
-            <ListItemText> CurrentTime: {formattedcurrent}</ListItemText>
-        </ListItem>
 
         <ListItem>
             <ListItemIcon><AvTimerIcon/></ListItemIcon>   
@@ -179,10 +234,17 @@ visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
         </ListItem>
 
         <ListItem>
+            <ListItemIcon><AvTimerIcon/></ListItemIcon>   
+            <ListItemText> CurrentTime: {formattedcurrent}</ListItemText>
+        </ListItem>
+
+      
+
+        <ListItem>
             <ListItemIcon><AvTimerIcon/></ListItemIcon>  
           
             { 
-            inRecoveryTime?
+            inRecoveryTime && !fundingTargetReached?
             <ListItemText sx={{color:'green'}}> RecoverTime: {recovertime}</ListItemText> :<ListItemText sx={{color:'red'}}> RecoverTime: {recovertime}</ListItemText>
             }
         </ListItem>
@@ -190,12 +252,28 @@ visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
         <ListItem>
             <ListItemIcon><AvTimerIcon/></ListItemIcon>  
             {
-            inClaimTime? 
+            inClaimTime && !fundingTargetReached? 
             <ListItemText sx={{color:'green'}}> ClaimTime: {claimtime}</ListItemText>:  <ListItemText sx={{color:'red'}}> ClaimTime: {claimtime}</ListItemText>
             }    
         </ListItem>
 
-       
+       {fundsWithdrawn?
+       ( <ListItem>
+        <ListItemIcon><AvTimerIcon/></ListItemIcon>  
+        <ListItemText sx={{color:'blue'}}>FUNDS WITHDRAWN. Fundraising campaign has ended.</ListItemText>   
+        </ListItem>): null
+    
+        }
+
+        {goldenDonerElect !== null ?
+       ( <ListItem>
+        <ListItemIcon><StarOutlineIcon/></ListItemIcon>  
+        <ListItemText sx={{color:'brown'}}>GOLDEN DONER:{goldenDonerElect}</ListItemText>   
+        </ListItem>): null
+    
+        }
+
+    
 
 
        </List>
@@ -213,24 +291,28 @@ visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
     <Box sx={{marginBottom: 2}}>
     <Button color="error" variant='contained'onClick={(e)=>(setInfoAvailable(false))}>Search For Another Contract</Button>
     </Box>
-    
-  
-   <Card>
+ 
+ {!fundsWithdrawn?
+ (<Card>
     <Box sx={{display:'inline-block', width: 1/3}}>
         {
-        currenttime ?
-        <CanvasTimer 
-        inClaimTime={inClaimTime}
-        inRecoveryTime={inRecoveryTime}
-        startTime={startTime}  
-        claimTime={claimTime} 
-        recoverTime={recoverTime} 
-        currentTime={currenttime}/>: <CircularProgress/>
+            !fundingTargetReached ? ( currenttime ?
+                <CanvasTimer 
+                inClaimTime={inClaimTime}
+                inRecoveryTime={inRecoveryTime}
+                startTime={startTime}  
+                claimTime={claimTime} 
+                recoverTime={recoverTime} 
+                currentTime={currenttime}/>: <CircularProgress/>
+                ): null
         }
+   
     </Box>
 
     <Box sx={{display:'inline-block', width:1/3}}>
         <Deposit 
+        fundingTargetReached={fundingTargetReached}
+        inClaimTime={inClaimTime}
         setWalletBalance={setWalletBalance} 
         defaultAccount={defaultAccount} 
         provider={provider} 
@@ -241,6 +323,10 @@ visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
         signer={signer}/>
         
         <Withdraw
+        fundsWithdrawn = {fundsWithdrawn}
+        fundingTargetReached={fundingTargetReached}
+        contractOwner = {contractOwner}
+        inClaimTime = {inClaimTime}
         inRecoveryTime={inRecoveryTime}
         provider={provider}
         setWalletBalance={setWalletBalance}
@@ -254,9 +340,11 @@ visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
     </Box>
 
     <Box sx={{display:'inline-block', width:1/3}}> 
-        <VisualizeDeposit fundingTarget={fundingTarget} contractBalance={contractBalance} />
+    {!fundingTargetReached ? 
+        <VisualizeDeposit fundingTarget={fundingTarget} contractBalance={contractBalance} /> : null}
     </Box>
-   </Card>
+   </Card>):null}
+   
    
       </>
   

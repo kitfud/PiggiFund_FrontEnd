@@ -36,6 +36,7 @@ setPiggiContractAddress(event.target.value)
 const getContractInfo = async ()=>{
     setProcessing(true)
 try{
+let trimAddress = piggiContractAddress.trim()
 const contractIndex = await contract.getIndexFromAddress(piggiContractAddress)
 console.log("contract index " + contractIndex)
 setPiggiContractIndex(contractIndex)
@@ -107,7 +108,7 @@ useEffect(()=>{
 },[infoavailable])
 
 useEffect(()=>{
-console.log("Got the message in higher component on balance change.")
+console.log("Got the message in higher component, Contract Details, on balance change.")
 },[piggiContractBalance])
 
   return (

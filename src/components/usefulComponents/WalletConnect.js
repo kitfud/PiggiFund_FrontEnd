@@ -148,7 +148,7 @@ const WalletConnect = ({ contract,mostrecentcontract,defaultAccount, setDefaultA
     }, [accountchanging])
 
     useEffect(()=>{
-        console.log("contract ownership check")
+     
         if(mostrecentcontract){
         checkContractOwnership()
         }

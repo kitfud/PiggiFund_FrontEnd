@@ -195,6 +195,44 @@
                 "type": "uint256"
             }
         ],
+        "name": "getCheckFundsWithdrawn",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
+        "name": "getCheckGoldenDonerSet",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_storageIndex",
+                "type": "uint256"
+            }
+        ],
         "name": "getContractOwner",
         "outputs": [
             {
