@@ -135,7 +135,6 @@ console.log("Got the message in higher component, Contract Details, on balance c
    <Card variant="outlined" sx={{ backgroundColor: "beige", marginBottom:1}}>
    <CardContent sx={{padding:0,marginTop:2, marginLeft:0.5,marginRight:0.5}}>
    <Box>
-       {console.log("THIS IS ADDRESS PASSED: "+addresspassed)}
         <TextField label="Enter PiggiFund Contract Address" autoComplete="off" fullWidth id="setAddress" variant="outlined" onChange={handleAddressChange}/>
    </Box>
 

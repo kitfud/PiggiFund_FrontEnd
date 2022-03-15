@@ -142,8 +142,6 @@ const WalletConnect = ({
     }
 
     useEffect(()=>{
-        console.log(addresspassed)
-
         if(addresspassed){
             setConnButtonText("Connect Wallet To View!")
         }

@@ -12,9 +12,9 @@ import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 const Home = () => {
   return (
     <>
-      <Card sx={{marginTop:3}}>
+      <Card sx={{marginTop:2}} variant="outlined">
         <Box>
-        <Typography sx={{fontSize:20}}>Welcome To PiggiFund!</Typography>
+        <Typography sx={{fontSize:20,marginTop:1}}>Welcome To PiggiFund!</Typography>
         <SavingsIcon sx={{fontSize:'500%',marginTop:4}} color="primary"/>     
         </Box>
 
@@ -23,8 +23,8 @@ const Home = () => {
         <CardHeader title="ABOUT"/> 
   <CardContent>
 <Typography>
-  The PiggiFund protocol provides a cyrptofundraising platform to the masses. Use the PiggiFund Maker to mint a custom fundraising contract
-  and share out the address along with the PiggiFund UI to begin your campaign!
+  PiggiFund provides a cyrptofundraising platform for the masses. Use the PiggiFund Maker to mint a fundraising contract
+  and share out the resulting address, along with the PiggiFund UI, to kick-start your fundraising campaign! 
 </Typography>
 </CardContent>
           </Card>
@@ -41,7 +41,7 @@ const Home = () => {
     <EmojiEventsIcon/>
       </ListItemIcon>
       <ListItemText>
-  The fundraiser sets a contract goal. Funds can be donated towards the goal until it is met or the refund period arrives. If the funding goal is met 
+  The fundraiser sets a contract goal. Funds can be donated towards the goal until met or the refund time period arrives. If the funding goal is met 
   no more contributions can be made to the campaign and the fundraiser is allowed to withdraw all funds.
       </ListItemText>   
     </ListItem>
@@ -53,7 +53,8 @@ const Home = () => {
       </ListItemIcon>
       <ListItemText>
 A refund period is set by the fundraiser which signals the end of a fundraising campaign without the fundraising goal havig been met. 
-Doners have the option of intializing a refund on their contribution via the PiggiFund UI. The fundraier is not able to withdraw donations yet.
+Doners have the option of getting a refund on their contribution via the PiggiFund UI. The fundraier is not able to withdraw donations yet. Doners are still able to make contributions 
+until the claim period.
       </ListItemText>   
     </ListItem>
 
@@ -64,7 +65,7 @@ Doners have the option of intializing a refund on their contribution via the Pig
       </ListItemIcon>
       <ListItemText>
 A claim period is set by the fundraiser signaling the end of when doners can get a refund. During this period, even though the fundraising goal
-has not been met, the fundraiser is allowed to withdraw all donations. 
+has not been met, the fundraiser is allowed to withdraw all donations within the contract.
       </ListItemText>   
     </ListItem>
 
@@ -74,7 +75,8 @@ has not been met, the fundraiser is allowed to withdraw all donations.
 <MilitaryTechIcon/>
       </ListItemIcon>
       <ListItemText>
-The address of the doner whose contribution pushes the fundraising campaign into the target is recorded as the "Golden Doner."  
+The address of the doner whose contribution pushes the fundraising campaign into the target is recorded as the "Golden Doner." This address can be used
+for purposes like sending an token based award- like an NFT.
       </ListItemText>   
     </ListItem>
 

@@ -85,7 +85,7 @@ catch{
   console.log("Okay. Issue getting your donation. Hold up")
 }
 finally{
-  console.log("Trying again....")
+  console.log("Trying again, check amount donated in contract....")
   donationWei = await contract.amountDonatedInContract(account,contractIndex)
 }
 

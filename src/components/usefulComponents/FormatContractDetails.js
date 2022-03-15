@@ -61,7 +61,6 @@ const FormatContractDetails = ({
       try{
         areFundsWithdrawn = await contract.getCheckFundsWithdrawn(piggiContractIndex)
         setFundsWithdrawn(areFundsWithdrawn)
-        console.log("have funds been withdrawn: "+ areFundsWithdrawn)
       }
       catch{
         console.log("Error checking if funds have been withdrawn.")
@@ -74,7 +73,6 @@ const FormatContractDetails = ({
         try{
             let contractIndex = parseInt(piggiContractIndex)
             theGoldenOne = await contract.getGoldenDoner(contractIndex)
-            console.log("the golden one is: "+ theGoldenOne)
             if(theGoldenOne !== '0x0000000000000000000000000000000000000000'){
             setGoldenDonerElect(theGoldenOne)
             }
@@ -91,7 +89,6 @@ const FormatContractDetails = ({
       try{
         targetReached = await contract.getTargetReached(piggiContractIndex)
         setFundingTargetReached(targetReached)
-        console.log("has target been reached: "+ targetReached)
         if (targetReached === true){
             checkGoldenDoner()
         }
@@ -181,7 +178,7 @@ useEffect(()=>{
         }
     
         return ()=>{
-            console.log("cancelling event listener")
+            console.log("cancelling event listener on exit")
             provider.removeListener('block', LogData,true)
         }
     },[infoavailable])
