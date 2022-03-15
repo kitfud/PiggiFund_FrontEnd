@@ -23,7 +23,7 @@ const Home = () => {
         <CardHeader title="ABOUT"/> 
   <CardContent>
 <Typography>
-  PiggiFund is a cyrptofundraising platform for the masses. Use the PiggiFund Maker to mint a fundraising contract
+  PiggiFund is a cyrpto fundraising platform for the masses. Use the PiggiFund Maker to mint a fundraising contract
   and share out the resulting address, along with the PiggiFund UI, to kick-start your fundraising campaign! 
 </Typography>
 </CardContent>
