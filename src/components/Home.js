@@ -3,16 +3,18 @@ import {  Box, Typography, Card, CardMedia, CardHeader, CardContent, ListItemTex
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import HandshakeIcon from '@mui/icons-material/Handshake';
-import imageContracts from '../img/ContractsPic.png'
-import imageMaker from '../img/MakerPic.png'
-import imageUI from '../img/UIPic.png'
+import HandymanIcon from '@mui/icons-material/Handyman';
+import ComputerIcon from '@mui/icons-material/Computer';
+import SearchIcon from '@mui/icons-material/Search';
+import SavingsIcon from '@mui/icons-material/Savings';
 
 const Home = () => {
   return (
     <>
       <Card sx={{marginTop:3}}>
         <Box>
-        <Typography sx={{fontSize:20}}>Welcome To the PiggiFund Protocol!</Typography>
+        <Typography sx={{fontSize:20}}>Welcome To PiggiFund!</Typography>
+        <SavingsIcon sx={{fontSize:'500%',marginTop:4}} color="primary"/>     
         </Box>
 
         <Box sx={{p:0.5,marginTop:1, display:"block"}}>
@@ -74,7 +76,7 @@ has not been met, the fundraiser is allowed to withdraw all donations.
 <Card variant="outlined">
 <CardHeader title="THE TOOLS"/>
 <Box sx={{p:0.5,display:'inline-block', width:1/3}}>
-  <Card variant="outlined">
+  <Card sx={{height:'45vw'}}variant="outlined">
       <CardHeader title="PiggiFund Maker"/>
       <CardContent>
      
@@ -82,34 +84,37 @@ has not been met, the fundraiser is allowed to withdraw all donations.
         Use the PiggiFund Maker to deploy your own Solidity smart-contract. Set your funding goal, campaign description, refund period and claim period and house this 
       information transparently, on chain. 
         </Typography>
-        <CardMedia  sx={{height:140 }}image={imageMaker}/>
+       
+       <HandymanIcon sx={{fontSize:'900%',marginTop:2}} color="primary"/>
        
       </CardContent>
     </Card>
   </Box>
 
   <Box sx={{p:0.5,display:'inline-block', width:1/3}}>
-  <Card variant="outlined">
+  <Card sx={{height:'45vw'}} variant="outlined">
       <CardHeader title="PiggiFund UI"/>
       <CardContent>
        <Typography>
     Visualize and make deposits into a PiggiFund contract with the PiggiFund UI. The innovative system detects the user's MetaMask address
     and will conditionaly render buttons avaiable for refunding or withdrawing depending on the timeframe.
        </Typography>
-       <CardMedia sx={{height:140 }}image={imageUI}/>
+       <ComputerIcon sx={{fontSize:'900%',marginTop:2}} color="primary"/>
+      
       </CardContent>
     </Card>
 </Box>
 
 <Box sx={{p:0.5,display:'inline-block', width:1/3}}>
-<Card variant="outlined">
+<Card  sx={{height:'45vw'}} variant="outlined">
       <CardHeader title="PiggiFund Contracts"/>
       <CardContent>
         <Typography>
           Search through PiggiFund contracts and grab an interesting contract address to search for 
           using the PiggiFund UI
         </Typography>
-        <CardMedia sx={{height:140 }}image={imageContracts}/>
+        <SearchIcon  sx={{fontSize:'900%',marginTop:4}} color="primary"/>
+      
       </CardContent>
     </Card>
 </Box>
