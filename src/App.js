@@ -7,6 +7,7 @@ import PiggiFundUI from './components/PiggiFundUI';
 import Navbar from './components/usefulComponents/Navbar';
 import Contracts from './components/Contracts';
 import FactoryABI from "./chain-info/abi.json"
+import Footer from './components/usefulComponents/Footer';
 
 let theme = createTheme({
   palette: {
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-    
+       
     <Container className="App">
     <Navbar/>
       <Routes>
@@ -37,7 +38,9 @@ function App() {
         <Route path="ui" element= {<PiggiFundUI piggiFundAddress={piggiFundAddress} abi={abi}/>}/>
         <Route path="contracts" element={<Contracts piggiFundAddress={piggiFundAddress} abi={abi}/>} />
       </Routes>
+      <Footer/>
     </Container>
+    
   </ThemeProvider>
   );
 }
