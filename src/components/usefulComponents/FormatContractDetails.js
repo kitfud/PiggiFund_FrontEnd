@@ -293,7 +293,7 @@ checkGoldenDoner()
     </Box>
  
  {!fundsWithdrawn?
- (<Card sx={{marginBottom:1}}>
+ (<Card sx={{marginBottom:1}}> 
     <Box sx={{display:'inline-block', width: 1/3}}>
         {
             !fundingTargetReached ? ( currenttime ?

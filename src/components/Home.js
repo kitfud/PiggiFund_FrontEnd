@@ -7,6 +7,7 @@ import HandymanIcon from '@mui/icons-material/Handyman';
 import ComputerIcon from '@mui/icons-material/Computer';
 import SearchIcon from '@mui/icons-material/Search';
 import SavingsIcon from '@mui/icons-material/Savings';
+import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 
 const Home = () => {
   return (
@@ -64,6 +65,16 @@ Doners have the option of intializing a refund on their contribution via the Pig
       <ListItemText>
 A claim period is set by the fundraiser signaling the end of when doners can get a refund. During this period, even though the fundraising goal
 has not been met, the fundraiser is allowed to withdraw all donations. 
+      </ListItemText>   
+    </ListItem>
+
+
+    <ListItem>
+      <ListItemIcon>
+<MilitaryTechIcon/>
+      </ListItemIcon>
+      <ListItemText>
+The address of the doner whose contribution pushes the fundraising campaign into the target is recorded as the "Golden Doner."  
       </ListItemText>   
     </ListItem>
 

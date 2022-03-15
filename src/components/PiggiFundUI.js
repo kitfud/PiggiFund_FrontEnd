@@ -15,7 +15,7 @@ const [mostrecentcontract, setMostRecentContract] = useState(null)
 
   return (
     <>
-    <Card sx={{height:'45vw'}} variant="outlined">
+    <Card variant="outlined">
     <Grid container direction="column" alignItems="center" justify="center">
     <Box sx={{display:'block', width:'auto'}}>
     <Typography color="primary" component="h1" sx={{ fontSize: 20, fontWeight: 600, padding: 2}}>PiggiFund UI:</Typography>
