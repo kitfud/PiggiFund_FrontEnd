@@ -116,7 +116,7 @@ console.log("Got the message in higher component, Contract Details, on balance c
       !processing ?
   !infoavailable ?
     <>
-   <Card variant="outlined" sx={{ backgroundColor: "beige"}}>
+   <Card variant="outlined" sx={{ backgroundColor: "beige", marginBottom:1}}>
    <CardContent sx={{padding:0,marginTop:2, marginLeft:0.5,marginRight:0.5}}>
    <Box>
         <TextField label="Enter PiggiFund Contract Address" autoComplete="off" fullWidth id="setAddress" variant="outlined" onChange={handleAddressChange}/>
@@ -151,7 +151,7 @@ console.log("Got the message in higher component, Contract Details, on balance c
         startTime = {startTime}
         recoverTime = {recoverTime}
         claimTime = {claimTime}
-        />: <Box><CircularProgress/></Box>
+        />: <Box sx={{marginBottom:1}}><CircularProgress/></Box>
 
   )
 }

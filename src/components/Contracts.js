@@ -1,6 +1,6 @@
 import React,{useEffect,useState,useRef} from 'react'
 import {ethers} from 'ethers'
-import { TablePagination,TableContainer, TableHead, Table, TableRow, TableCell, TableBody } from "@mui/material"
+import { TablePagination,TableContainer, TableHead, Table, TableRow, TableCell, TableBody,Card } from "@mui/material"
 import { InstallMobileOutlined } from '@mui/icons-material';
 
 const Contracts = ({piggiFundAddress,abi}) => {
@@ -53,8 +53,9 @@ const Contracts = ({piggiFundAddress,abi}) => {
     const RenderedData =()=>{    
   
         return(
-            <>
-            <TableContainer>
+            <Card sx={{height:'45vw'}} variant="outlined">
+                 
+ <TableContainer>
                 <Table sx={{ minWidth: 650,marginTop:2}} aria-label="simple table">
                     <TableHead sx={{backgroundColor:"lightyellow"}}>
                     <TableRow>
@@ -101,7 +102,7 @@ const Contracts = ({piggiFundAddress,abi}) => {
             {
                 data ?
             <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 10]}
           component="div"
           count={data.length}
           rowsPerPage={rowsPerPage}
@@ -110,7 +111,11 @@ const Contracts = ({piggiFundAddress,abi}) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />:null
             }
-            </>
+            
+            </Card>
+           
+          
+           
               
         )
       

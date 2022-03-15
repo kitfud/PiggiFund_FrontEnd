@@ -15,7 +15,8 @@ const [mostrecentcontract, setMostRecentContract] = useState(null)
 
 return (
     <>
-   <Typography color="primary" component="h1" sx={{ fontSize: 20, fontWeight: 600, padding: 2}}>PiggiFund Maker:</Typography>
+    <Card sx={{height:'45vw'}} variant="outlined">
+    <Typography color="primary" component="h1" sx={{ fontSize: 20, fontWeight: 600, padding: 2}}>PiggiFund Maker:</Typography>
    <WalletConnect
    mostrecentcontract={mostrecentcontract} 
    defaultAccount={defaultAccount} 
@@ -39,6 +40,8 @@ return (
    signer={signer} 
    contract={contract} 
    provider={provider}/> : null}
+    </Card>
+  
     </>
   )
 }

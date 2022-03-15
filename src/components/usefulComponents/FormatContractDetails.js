@@ -288,12 +288,12 @@ checkGoldenDoner()
        <FormattedDetails/> 
     </Card>
 
-    <Box sx={{marginBottom: 2}}>
+    <Box sx={{marginBottom: 2,marginTop:1}}>
     <Button color="error" variant='contained'onClick={(e)=>(setInfoAvailable(false))}>Search For Another Contract</Button>
     </Box>
  
  {!fundsWithdrawn?
- (<Card>
+ (<Card sx={{marginBottom:1}}>
     <Box sx={{display:'inline-block', width: 1/3}}>
         {
             !fundingTargetReached ? ( currenttime ?

@@ -16,7 +16,7 @@ const Footer = () => {
       <IconButton href="/">
        <SavingsIcon/>
         </IconButton>
-        <Typography variant="body1" color="inherit">
+        <Typography color="inherit">
           &copy; 2022 Kit Fuderich
         </Typography>
       </Toolbar>
