@@ -2,7 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { List, ListItem, ListItemText, Button, CircularProgress, Box, TextField, Snackbar, Alert, Link, Typography, Card, CardContent, TableContainer, TableHead, Table, TableRow, TableCell, TableBody } from "@mui/material"
 import { ethers } from 'ethers'
 
-const WalletConnect = ({ contract,mostrecentcontract,defaultAccount, setDefaultAccount, walletBalance, setWalletBalance, address,abi, setProvider, setSigner, setContract, provider}) => {
+const WalletConnect = ({ 
+    addresspassed,
+    contract,
+    mostrecentcontract,
+    defaultAccount, 
+    setDefaultAccount, 
+    walletBalance, 
+    setWalletBalance, 
+    address,
+    abi, 
+    setProvider, 
+    setSigner, 
+    setContract, 
+    provider}) => {
 
     const [connButtonText, setConnButtonText] = useState('Connect Wallet');
     const [accountchanging, setAccountChanging] = useState(false)
@@ -126,6 +139,18 @@ const WalletConnect = ({ contract,mostrecentcontract,defaultAccount, setDefaultA
 
 
     }
+
+    useEffect(()=>{
+        console.log(addresspassed)
+
+        if(addresspassed){
+            setConnButtonText("Connect Wallet To View!")
+        }
+        else{
+            setConnButtonText("Connect to Wallet")
+        }
+    },[addresspassed])
+
 
     useEffect(() => {
 

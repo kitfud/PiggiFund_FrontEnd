@@ -3,7 +3,7 @@ import { List, ListItem, ListItemText, Button, CircularProgress, Box, TextField,
 import { ethers } from 'ethers'
 import FormatContractDetails from './FormatContractDetails'
 
-const ContractDetails = ({walletBalance, setWalletBalance, defaultAccount, signer,contract,provider}) => {
+const ContractDetails = ({addresspassed,walletBalance, setWalletBalance, defaultAccount, signer,contract,provider}) => {
 
 const [piggiContractBalance, setPiggiContractBalance] = useState(null)
 const [piggiContractAddress,setPiggiContractAddress] = useState(null)
@@ -108,6 +108,20 @@ useEffect(()=>{
 },[infoavailable])
 
 useEffect(()=>{
+    if(addresspassed){
+        setPiggiContractAddress(addresspassed)
+    }
+
+},[addresspassed])
+
+useEffect(()=>{
+    if(piggiContractAddress!==null && addresspassed){
+        getContractInfo()
+    }
+
+},[piggiContractAddress])
+
+useEffect(()=>{
 console.log("Got the message in higher component, Contract Details, on balance change.")
 },[piggiContractBalance])
 
@@ -119,6 +133,7 @@ console.log("Got the message in higher component, Contract Details, on balance c
    <Card variant="outlined" sx={{ backgroundColor: "beige", marginBottom:1}}>
    <CardContent sx={{padding:0,marginTop:2, marginLeft:0.5,marginRight:0.5}}>
    <Box>
+       {console.log("THIS IS ADDRESS PASSED: "+addresspassed)}
         <TextField label="Enter PiggiFund Contract Address" autoComplete="off" fullWidth id="setAddress" variant="outlined" onChange={handleAddressChange}/>
    </Box>
 

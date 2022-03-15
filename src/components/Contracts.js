@@ -1,7 +1,8 @@
 import React,{useEffect,useState,useRef} from 'react'
 import {ethers} from 'ethers'
-import { TablePagination,TableContainer, TableHead, Table, TableRow, TableCell, TableBody,Card } from "@mui/material"
+import { TablePagination,TableContainer, TableHead, Table, TableRow, TableCell, TableBody,Card,Button } from "@mui/material"
 import { InstallMobileOutlined } from '@mui/icons-material';
+import { useNavigate } from "react-router-dom";
 
 const Contracts = ({piggiFundAddress,abi}) => {
 
@@ -14,6 +15,8 @@ const Contracts = ({piggiFundAddress,abi}) => {
     const [rowsPerPage,setRowsPerPage] = useState(5)
 
     const mountedRef = useRef()
+
+    const navigate = useNavigate()
 
 
     const handleChangePage = (event,newPage)=>{
@@ -63,6 +66,7 @@ const Contracts = ({piggiFundAddress,abi}) => {
                         <TableCell align="center">Contract Address</TableCell>
                         <TableCell align="center">Summary</TableCell>
                         <TableCell align="center">FundingGoal</TableCell>
+                        <TableCell align="center"></TableCell>
                     </TableRow>
                     </TableHead>
             
@@ -71,6 +75,7 @@ const Contracts = ({piggiFundAddress,abi}) => {
                     data?(
             data.slice(0).reverse().slice(page * rowsPerPage, page*rowsPerPage+rowsPerPage).map((item)=>{
                 let fundingETH = ethers.utils.formatEther(item._fundingGoal)
+                let contractSelected = item._contractAddress
              
                         return(
                         <TableRow key={item._contractAddress}>
@@ -78,6 +83,7 @@ const Contracts = ({piggiFundAddress,abi}) => {
                             <TableCell>{item._contractAddress}</TableCell> 
                             <TableCell align="center">{item._summary}</TableCell>
                             <TableCell align="center">{fundingETH}</TableCell>
+                            <TableCell> <Button variant="contained" color="success" onClick={()=>navigate('/ui',{state:contractSelected})}>Visit</Button> </TableCell>   
                         </TableRow> )
             })
             
@@ -102,7 +108,7 @@ const Contracts = ({piggiFundAddress,abi}) => {
             {
                 data ?
             <TablePagination
-          rowsPerPageOptions={[5, 10]}
+          rowsPerPageOptions={[5]}
           component="div"
           count={data.length}
           rowsPerPage={rowsPerPage}

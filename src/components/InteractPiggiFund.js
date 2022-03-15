@@ -1,10 +1,24 @@
 import React from 'react'
 import ContractDetails from './usefulComponents/ContractDetails'
 
-const InteractPiggiFund = ({walletBalance,setWalletBalance, defaultAccount, signer,contract,provider}) => {
+const InteractPiggiFund = ({
+  addresspassed,
+  walletBalance,
+  setWalletBalance, 
+  defaultAccount, 
+  signer,
+  contract,
+  provider}) => {
   return (
   <>
-    <ContractDetails walletBalance={walletBalance} setWalletBalance={setWalletBalance} defaultAccount={defaultAccount} signer={signer} contract={contract} provider={provider}/>
+    <ContractDetails
+    addresspassed={addresspassed} 
+    walletBalance={walletBalance} 
+    setWalletBalance={setWalletBalance} 
+    defaultAccount={defaultAccount} 
+    signer={signer} 
+    contract={contract} 
+    provider={provider}/>
   </>
    
   )
