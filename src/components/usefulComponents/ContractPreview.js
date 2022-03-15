@@ -5,7 +5,17 @@ import {  Box, Typography, Card,List, ListItem, ListItemText,Button, CircularPro
 
 
 
-const ContractPreview = ({setMostRecentContract, defaultAccount, setWalletBalance, contract,provider, setPreviewContract, fundingGoal, fundingDescription,returnFundsMin,claimFundsMin}) => {
+const ContractPreview = ({
+    mostrecentcontract,
+    setMostRecentContract, 
+    defaultAccount, 
+    setWalletBalance, 
+    contract,provider, 
+    setPreviewContract, 
+    fundingGoal, 
+    fundingDescription,
+    returnFundsMin,
+    claimFundsMin}) => {
 
 const [processing, setProcessing] = useState(false)
 const [txhash, setTxHash] = useState(null)
@@ -146,12 +156,19 @@ const getContractsMade = async () => {
             mostRecentContractAddress= await contract.getAddressFromIndex(lastContract)
             }
             catch{
-                console.log("Most likely VM execution error.")
+                console.log("Most likely VM execution error...")  
             }
             finally{
-                console.log("And another one...")
-                console.log("getting contract at this index: "+ lastContract)
-                mostRecentContractAddress= await contract.getAddressFromIndex(lastContract)
+                try{
+                    console.log("And another one...")
+                    console.log("getting contract at this index: "+ lastContract)
+                    mostRecentContractAddress= await contract.getAddressFromIndex(lastContract)
+
+                }
+                catch{
+                    alert("So sorry. Theres an error retreiving the new contract address to the UI. Click the Contracts tab and you'll most likely see the contract you made there.")
+                }
+             
             }
             
         }
@@ -192,12 +209,15 @@ const ContractData = () =>{
           !processing? (
             <>
             <ContractData/>
+            {console.log(mostrecentcontract)}
+            {mostrecentcontract ==null ?
             <Box>
               <Box p={1}>
-              <Button sx={{p:1}} color="error" variant="contained" onClick={handleCancel}>Cancel Contract</Button>
-              <Button sx={{p:1}} color="success" variant="contained" onClick={handleCreateContract} >Create Contract</Button>
+              <Button sx={{p:1,marginRight:0.5}} color="error" variant="contained" onClick={handleCancel}>Cancel Contract</Button>
+              <Button sx={{p:1, marginLeft:0.5}} color="success" variant="contained" onClick={handleCreateContract} >Create Contract</Button>
               </Box>
-            </Box>
+            </Box>:null 
+             }
             </>
           ): 
           (

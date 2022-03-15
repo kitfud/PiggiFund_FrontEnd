@@ -128,9 +128,10 @@ const handleReturnFundsPeriod =(e)=>{
     <Box >
     <TextField helperText={intErrorClaimFunds? 'Only Whole Numbers': valueSizeError ? 'claim funds value must be > return funds value' : ''} error={intErrorClaimFunds || valueSizeError} required autoComplete="off"  label="Claim Funds Period Begin In (min)" fullWidth id="setClaimFundsPeriod" variant="outlined" onChange={(e)=> handleClaimFundsPeriod(e.target.value)} ></TextField>
     </Box>
-     
+   
  
     </Card>
+   
     {
       previewbutton ? 
         <Box p={2}><Button  color="error" variant="contained" onClick={handleClick}>Preview Contract</Button></Box> : null

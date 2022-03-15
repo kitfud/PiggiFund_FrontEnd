@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { List, ListItem, ListItemText, Button, CircularProgress, Box, TextField, Snackbar, Alert, Link, Typography, Card, CardContent, TableContainer, TableHead, Table, TableRow, TableCell, TableBody } from "@mui/material"
 import { ethers } from 'ethers'
+import { useNavigate } from 'react-router-dom';
 
 const WalletConnect = ({ 
     addresspassed,
@@ -22,7 +23,7 @@ const WalletConnect = ({
     const [errorMessage, setErrorMessage] = useState(null);
     const [yourMostRecentContract, setYourMostRecentContract] = useState(null);
     
-    
+    const navigate = useNavigate()
 
     const [processing, setProcessing] = useState(false)
     
@@ -193,7 +194,19 @@ const WalletConnect = ({
                                 <Typography variant="h3" sx={{ fontSize: 15 }}>Address: {defaultAccount}</Typography>
                                 <Typography variant="h3" sx={{ fontSize: 15 }}>Wallet Balance: {walletBalance}</Typography>
                               {
-                                  yourMostRecentContract ? (<Typography variant="h3" sx={{ fontSize: 15 }} color="red">Your Recent PiggiFund Contract: {mostrecentcontract}</Typography>) : (null)
+                                  yourMostRecentContract ? (
+                                      <>
+                                <Typography variant="h3" sx={{ fontSize: 15 }} color="red">Your PiggiFund Contract: {mostrecentcontract}</Typography>
+                                  <Button 
+                                  onClick={()=>navigate('/ui',{state:mostrecentcontract})}
+                                  sx={{marginTop:2}} 
+                                  color="primary" 
+                                  variant="contained">Visit With PiggiFund UI</Button>
+                                      </>
+                                
+                                  
+                                  
+                                  ) : (null)
                               }
                             </CardContent>
                         </Card>

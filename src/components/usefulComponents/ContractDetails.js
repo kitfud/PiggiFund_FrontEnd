@@ -54,6 +54,8 @@ const contractOwnerAddress = await contract.getContractOwner(contractIndex)
 console.log("contract owner address "+ contractOwnerAddress)
 setContractOwner(contractOwnerAddress)
 
+
+
 const contractTimeFrames = await contract.getContractTimeFrames(contractIndex)
 
 let start = contractTimeFrames[0].toNumber()

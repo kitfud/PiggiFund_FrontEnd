@@ -21,9 +21,16 @@ const {state} = useLocation();
 useEffect(()=>{
 if (state){
   setAddressPassed(state)
-
 }
+
 },[state])
+
+useEffect(()=>{
+  window.history.replaceState({}, document.title)
+return()=>{
+  setAddressPassed(null)
+}
+},[])
 
 const ViewContractAddress = ()=>{
   return(<>
