@@ -23,7 +23,7 @@ const Home = () => {
         <CardHeader title="ABOUT"/> 
   <CardContent>
 <Typography>
-  PiggiFund provides a cyrptofundraising platform for the masses. Use the PiggiFund Maker to mint a fundraising contract
+  PiggiFund is a cyrptofundraising platform for the masses. Use the PiggiFund Maker to mint a fundraising contract
   and share out the resulting address, along with the PiggiFund UI, to kick-start your fundraising campaign! 
 </Typography>
 </CardContent>
@@ -41,7 +41,7 @@ const Home = () => {
     <EmojiEventsIcon/>
       </ListItemIcon>
       <ListItemText>
-  The fundraiser sets a contract goal. Funds can be donated towards the goal until met or the refund time period arrives. If the funding goal is met 
+  The fundraiser sets a contract goal. Funds can be donated towards the goal until met or the refund period arrives. If the funding goal is met 
   no more contributions can be made to the campaign and the fundraiser is allowed to withdraw all funds.
       </ListItemText>   
     </ListItem>
@@ -75,7 +75,7 @@ has not been met, the fundraiser is allowed to withdraw all donations within the
 <MilitaryTechIcon/>
       </ListItemIcon>
       <ListItemText>
-The address of the doner whose contribution pushes the fundraising campaign into the target is recorded as the "Golden Doner." This address can be used
+The address of the doner whose contribution pushes the fundraising campaign into the target is recorded as the "Golden Doner" on the contract. This address can be used
 for purposes like sending an token based award- like an NFT.
       </ListItemText>   
     </ListItem>
@@ -95,7 +95,7 @@ for purposes like sending an token based award- like an NFT.
      
         <Typography>
         Use the PiggiFund Maker to deploy your own Solidity smart-contract. Set your funding goal, campaign description, refund period and claim period and house this 
-      information transparently, on chain. 
+      information transparently and securely, on chain. 
         </Typography>
        
        <HandymanIcon sx={{fontSize:'900%',marginTop:2}} color="primary"/>
@@ -109,7 +109,7 @@ for purposes like sending an token based award- like an NFT.
       <CardHeader title="PiggiFund UI"/>
       <CardContent>
        <Typography>
-    Visualize and make deposits into a PiggiFund contract with the PiggiFund UI. The innovative system detects the user's MetaMask address
+    Visualize and make deposits/withdraws into a PiggiFund contract with the PiggiFund UI. The innovative system detects the user's MetaMask address
     and will conditionaly render buttons avaiable for refunding or withdrawing depending on the timeframe.
        </Typography>
        <ComputerIcon sx={{fontSize:'900%',marginTop:2}} color="primary"/>
@@ -123,8 +123,8 @@ for purposes like sending an token based award- like an NFT.
       <CardHeader title="PiggiFund Contracts"/>
       <CardContent>
         <Typography>
-          Search through PiggiFund contracts and grab an interesting contract address to search for 
-          using the PiggiFund UI
+          Search through PiggiFund contracts and grab an interesting contract address to visit 
+          through the PiggiFund UI
         </Typography>
         <SearchIcon  sx={{fontSize:'900%',marginTop:4}} color="primary"/>
       

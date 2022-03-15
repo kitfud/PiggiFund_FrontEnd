@@ -40,7 +40,6 @@ createPiggiFundContract()
 
 const createPiggiFundContract= async ()=>{
     try{
-    console.log(contract)
     setProcessing(true)
 
     
@@ -209,7 +208,7 @@ const ContractData = () =>{
           !processing? (
             <>
             <ContractData/>
-            {console.log(mostrecentcontract)}
+          
             {mostrecentcontract ==null ?
             <Box>
               <Box p={1}>

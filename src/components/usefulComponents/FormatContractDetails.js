@@ -201,14 +201,9 @@ checkGoldenDoner()
        <List>
            <ListItem>
            <ListItemIcon><AlternateEmailIcon/></ListItemIcon>         
-         <ListItemText> {contractAddress} </ListItemText>
+         <ListItemText> Contract Address: {contractAddress} </ListItemText>
            </ListItem>
         
-        <ListItem>
-            <ListItemIcon><AccountBalanceWalletIcon/></ListItemIcon>   
-            <ListItemText> {contractBalance} ETH </ListItemText>
-        </ListItem>
-
         <ListItem>
             <ListItemIcon><AccountBoxIcon/></ListItemIcon>   
             <ListItemText> Contract Owner: {contractOwner}</ListItemText>
@@ -216,7 +211,12 @@ checkGoldenDoner()
 
         <ListItem>
             <ListItemIcon><SummarizeIcon/></ListItemIcon>   
-            <ListItemText> {fundingDescription}</ListItemText>
+            <ListItemText>Summary: {fundingDescription}</ListItemText>
+        </ListItem>
+
+        <ListItem>
+            <ListItemIcon><AccountBalanceWalletIcon/></ListItemIcon>   
+            <ListItemText> Current Contract Balance: {contractBalance} ETH </ListItemText>
         </ListItem>
 
         <ListItem>

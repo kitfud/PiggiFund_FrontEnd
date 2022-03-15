@@ -54,7 +54,6 @@ const WalletConnect = ({
         if (!accountchanging) {
             setYourMostRecentContract(null)
             setAccountChanging(true)
-            console.log("account change happened")
             setDefaultAccount(checkAccountType(newAccount));
             updateEthers();
         }
@@ -67,7 +66,7 @@ const WalletConnect = ({
         }
         else {
     
-            console.log(newAccount)
+            console.log("current user: " + newAccount)
             return newAccount
         }
     }
@@ -129,10 +128,7 @@ const WalletConnect = ({
         let defaultAccountUpper = String(defaultAccount).toUpperCase()
         let contractOwnerUpper = String(contractOwner).toUpperCase()
 
-        console.log("contractOwner " + contractOwnerUpper)
-        console.log("defaultAccount " + defaultAccountUpper)
 
-    
 
         if(contractOwnerUpper === defaultAccountUpper){
             setYourMostRecentContract(mostrecentcontract)

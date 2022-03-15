@@ -232,34 +232,6 @@ null:(
   :<CircularProgress/>
 )}
 
-{/* {
-  !processing?
-  <>
-{ !fundingTargetReached?
-<Typography variant="h2" sx={{ fontSize: 15, fontWeight: 600, marginBottom:2 }} >Funded: <Typography color="red"> {userdonation} ETH</Typography></Typography>:null
-}
-
-{
-  inRecoveryTime && userdonation>0 && !fundingTargetReached?
-  <Button color="error" variant="contained" onClick={handleWithdraw}> Withdraw</Button> :null
-}
-
-
-{
-   fundingTargetReached && account.toUpperCase() === contractOwner.toUpperCase()? 
-   <Button variant="contained" color="success" onClick={handleAdminRecieveFunds} >FUNDING TARGET MET. GET FUNDS.</Button> :
-   null
-}
-
-{
-  inClaimTime && account.toUpperCase() === contractOwner.toUpperCase() && !fundingTargetReached? 
-  (<Button variant="contained" color="success" onClick={handleAdminClaimFunds}>ADMIN CLAIM FUNDING</Button>):
-   null
-}
-
-</>
-  :<CircularProgress/>
-} */}
 
 
 
