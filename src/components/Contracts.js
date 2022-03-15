@@ -131,13 +131,19 @@ const Contracts = ({piggiFundAddress,abi}) => {
                 event: JSON.stringify(event)
             });
             LogData()
+
             contract.removeListener("ContractCreated",(owner,contractaddress,summary,fundinggoal,event))
+
+            return ()=>  contract.removeListener("ContractCreated",(owner,contractaddress,summary,fundinggoal,event))
+
         })
 
         LogData()
     }
     
-    return () => mountedRef.current = false
+    return () => {
+        mountedRef.current = false 
+    }
    
     },[])
     

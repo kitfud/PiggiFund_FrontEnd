@@ -122,11 +122,11 @@ const handleReturnFundsPeriod =(e)=>{
     </Box>
    
     <Box >
-    <TextField helperText={intErrorReturnFunds ?'Only Whole Numbers':valueSizeErrorReturnPeriod ?'return funds value must be < claim funds value' :''} error={intErrorReturnFunds || valueSizeErrorReturnPeriod} required autoComplete="off" sx={{marginBottom:1}} label="Donator Return Begin In (min)" fullWidth id="setReturnFundsPeriod" variant="outlined" onChange={(e)=> handleReturnFundsPeriod(e.target.value)} ></TextField>
+    <TextField helperText={intErrorReturnFunds ?'Only Whole Numbers':valueSizeErrorReturnPeriod ?'return funds value must be < claim funds value' :''} error={intErrorReturnFunds || valueSizeErrorReturnPeriod} required autoComplete="off" sx={{marginBottom:1}} label="Refund Period Begin In (min)" fullWidth id="setReturnFundsPeriod" variant="outlined" onChange={(e)=> handleReturnFundsPeriod(e.target.value)} ></TextField>
     </Box>
     
     <Box >
-    <TextField helperText={intErrorClaimFunds? 'Only Whole Numbers': valueSizeError ? 'claim funds value must be > return funds value' : ''} error={intErrorClaimFunds || valueSizeError} required autoComplete="off"  label="Owner Claim Funds Begin In (min)" fullWidth id="setClaimFundsPeriod" variant="outlined" onChange={(e)=> handleClaimFundsPeriod(e.target.value)} ></TextField>
+    <TextField helperText={intErrorClaimFunds? 'Only Whole Numbers': valueSizeError ? 'claim funds value must be > return funds value' : ''} error={intErrorClaimFunds || valueSizeError} required autoComplete="off"  label="Claim Funds Period Begin In (min)" fullWidth id="setClaimFundsPeriod" variant="outlined" onChange={(e)=> handleClaimFundsPeriod(e.target.value)} ></TextField>
     </Box>
      
  

@@ -6,8 +6,7 @@ import {
   Toolbar,
   CssBaseline,
   Typography,
-  useTheme,
-  useMediaQuery,
+  IconButton
 } from '@mui/material'
 import { makeStyles } from '@mui/styles';
 
@@ -41,13 +40,16 @@ const Navbar =() => {
          <AppBar position="static">
       <CssBaseline />
       <Toolbar>
+        <IconButton href="/">
         <Typography variant="h4" className={classes.logo} color="white">
           PiggiFund 
         </Typography>
+        </IconButton>
+      
       
           <div className={classes.navlinks} >
             <Link to="/" className={classes.link}>
-              Home
+              About
             </Link>
             <Link to="/maker" className={classes.link}>
               Maker
