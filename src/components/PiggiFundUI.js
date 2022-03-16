@@ -32,6 +32,10 @@ return()=>{
 }
 },[])
 
+useEffect(()=>{
+console.log("Parent Component-PiggiFundUI-detecting wallet balance state change from child component.")
+},[walletBalance])
+
 const ViewContractAddress = ()=>{
   return(<>
     <Typography sx={{ fontSize: 20, fontWeight: 600}} component="h2">You Selected Contract:</Typography>

@@ -22,6 +22,7 @@ const WalletConnect = ({
     const [accountchanging, setAccountChanging] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null);
     const [yourMostRecentContract, setYourMostRecentContract] = useState(null);
+    const [connectButtonColor, setConnectButtonColor] = useState("primary")
     
     const navigate = useNavigate()
 
@@ -35,6 +36,7 @@ const WalletConnect = ({
     
                     accountChangedHandler(result[0]);
                     setConnButtonText('Wallet Connected');
+                    setConnectButtonColor("success")
     
     
     
@@ -140,9 +142,11 @@ const WalletConnect = ({
     useEffect(()=>{
         if(addresspassed){
             setConnButtonText("Connect Wallet To View!")
+            setConnectButtonColor("secondary")
         }
         else{
             setConnButtonText("Connect to Wallet")
+            setConnectButtonColor("primary")
         }
     },[addresspassed])
 
@@ -171,12 +175,14 @@ const WalletConnect = ({
         if(mostrecentcontract){
         checkContractOwnership()
         }
+
+        return ()=>{setYourMostRecentContract(null)}
     },[mostrecentcontract])
 
   return (
       <>
     <Box>
-    <Button onClick={connectWalletHandler} color="primary" variant="contained" sx={{ margin: 2 }}>{connButtonText}</Button>
+    <Button onClick={connectWalletHandler} color={connectButtonColor} variant="contained" sx={{ margin: 2 }}>{connButtonText}</Button>
     </Box>
 
     {

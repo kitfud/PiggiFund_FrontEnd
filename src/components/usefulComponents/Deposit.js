@@ -47,16 +47,19 @@ const handleDepositValidation =(e)=>{
 const updateWallet = async() =>{
     let balance;
     try{
-        await provider.getBalance(defaultAccount);
+       balance= await provider.getBalance(defaultAccount);
     }
     catch{
-        console.log("Error getting wallet balance. Not cool.")
+        console.log("Error getting wallet balance. NOT cool.")
     }
     finally{
         console.log("attempting again...")
-        await provider.getBalance(defaultAccount);
+        balance=await provider.getBalance(defaultAccount);
     }
+
+    console.log("BALANCE IN DEPOSIT COMPONENT: "+ balance)
     if (balance){
+    console.log("Setting updated user wallet balance...")
     let formatBalance = ethers.utils.formatEther(balance)
     setWalletBalance(formatBalance)
     }
@@ -71,8 +74,14 @@ const updateBalance =async()=>{
     console.log("Error retreiving contract balance after that deposit.SORRY.")
     }
     finally{
-    console.log("Attempting again....with index: "+piggiContractIndex)
-    currentBalance = await contract.callGetBalance(piggiContractIndex)   
+    console.log("Known area for deubbing. Attempting again....with index: "+piggiContractIndex)
+    try{
+        currentBalance = await contract.callGetBalance(piggiContractIndex)
+    }
+    catch{
+        console.log("contract OBJ: "+ contract)
+        console.log("ISSUE: with await on call contract balance-> most likely  issue with contract object")
+    }   
     }
     
     const balanceETH = ethers.utils.formatEther(currentBalance)

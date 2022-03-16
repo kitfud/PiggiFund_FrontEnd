@@ -86,7 +86,14 @@ catch{
 }
 finally{
   console.log("Trying again, check amount donated in contract....")
-  donationWei = await contract.amountDonatedInContract(account,contractIndex)
+  try{
+    donationWei = await contract.amountDonatedInContract(account,contractIndex)
+    console.log("SUCCESS!")
+  }
+  catch{
+    console.log("error retriving the amount donated. Check contract object and async actions.")
+  }
+
 }
 
 const donationETH = parseFloat(ethers.utils.formatEther(donationWei))
