@@ -41,6 +41,7 @@ const CanvasTimer = ({inClaimTime,inRecoveryTime, startTime, claimTime, recoverT
     }
 
     useEffect(()=>{
+      console.log("RECOVERY TIME Bool Change DETECTED FROM CANVAS TIMER")
       if(inRecoveryTime===true){
         setInRecoveryTime(true)
         processTimeRepresentation()
@@ -101,7 +102,7 @@ const CanvasTimer = ({inClaimTime,inRecoveryTime, startTime, claimTime, recoverT
         //draw
        draw(context)
         // }
-      }, [currentTime,inRecoveryTime,inClaimTime])
+      }, [currentTime,inRecoveryTime,inClaimTime,rt])
 
   return (
       
