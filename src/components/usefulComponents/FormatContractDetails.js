@@ -188,7 +188,7 @@ useEffect(()=>{
 visualizeWithdrawPeriods(currenttime,claimTime,recoverTime)
 checkIfFundsWithdrawn()
 checkIfFundingTargetReached()
-},[currenttime,contractBalance])
+},[currenttime,contractBalance,walletBalance])
 
 useEffect(()=>{
 checkGoldenDoner()
@@ -196,8 +196,15 @@ checkGoldenDoner()
 
 useEffect(()=>{
 console.log("Contract entering recovery time.")
-
 },[inRecoveryTime])
+
+useEffect(()=>{
+console.log("WALLET BALANCE CHANGE DETECTED IN FORMATCONTRACT DETAILS")
+},[walletBalance])
+
+useEffect(()=>{
+    console.log("WALLET BALANCE CHANGE DETECTED IN FORMATCONTRACT DETAILS")
+},[contractBalance])
 
 
    const FormattedDetails = ()=> {

@@ -123,9 +123,10 @@ useEffect(()=>{
 
 },[piggiContractAddress])
 
-useEffect(()=>{
-console.log("Got the message in higher component, Contract Details, on balance change.")
-},[piggiContractBalance])
+// useEffect(()=>{
+// console.log("Got the message in higher component, Contract Details, on balance change.")
+// getContractInfo()
+// },[piggiContractBalance])
 
   return (
       

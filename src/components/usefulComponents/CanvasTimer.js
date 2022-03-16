@@ -43,12 +43,25 @@ const CanvasTimer = ({inClaimTime,inRecoveryTime, startTime, claimTime, recoverT
     useEffect(()=>{
       if(inRecoveryTime===true){
         setInRecoveryTime(true)
+        processTimeRepresentation()
       }
       else{
         setInRecoveryTime(false)
       }
 
     },[inRecoveryTime])
+
+    useEffect(()=>{
+      if(inClaimTime===true){
+        setInClaimTime(true)
+        setInRecoveryTime(false)
+      }
+      else{
+        setInClaimTime(false)
+      }
+
+    },[inClaimTime])
+
 
 
 
@@ -88,7 +101,7 @@ const CanvasTimer = ({inClaimTime,inRecoveryTime, startTime, claimTime, recoverT
         //draw
        draw(context)
         // }
-      }, [currentTime])
+      }, [currentTime,inRecoveryTime,inClaimTime])
 
   return (
       
