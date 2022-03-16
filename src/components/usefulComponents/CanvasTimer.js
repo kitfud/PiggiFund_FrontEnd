@@ -40,6 +40,16 @@ const CanvasTimer = ({inClaimTime,inRecoveryTime, startTime, claimTime, recoverT
 
     }
 
+    useEffect(()=>{
+      if(inRecoveryTime===true){
+        setInRecoveryTime(true)
+      }
+      else{
+        setInRecoveryTime(false)
+      }
+
+    },[inRecoveryTime])
+
 
 
 

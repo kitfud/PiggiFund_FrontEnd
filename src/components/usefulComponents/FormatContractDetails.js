@@ -194,6 +194,11 @@ useEffect(()=>{
 checkGoldenDoner()
 },[targetReached])
 
+useEffect(()=>{
+console.log("Contract entering recovery time.")
+
+},[inRecoveryTime])
+
 
    const FormattedDetails = ()=> {
    
