@@ -23,7 +23,7 @@ const Home = () => {
         <CardHeader title="ABOUT"/> 
   <CardContent>
 <Typography>
-  PiggiFund is a cyrpto fundraising platform for the masses. Use the PiggiFund Maker to mint a fundraising contract
+  PiggiFund is a crypto fundraising platform for the masses. Use the PiggiFund Maker to mint a fundraising contract
   and share out the resulting address, along with the PiggiFund UI, to kick-start your fundraising campaign! 
 </Typography>
 </CardContent>
@@ -52,9 +52,9 @@ const Home = () => {
 <KeyboardReturnIcon/>
       </ListItemIcon>
       <ListItemText>
-A refund period is set by the fundraiser which signals the end of a fundraising campaign without the fundraising goal havig been met. 
-Doners have the option of getting a refund on their contribution via the PiggiFund UI. The fundraier is not able to withdraw donations yet. Doners are still able to make contributions 
-until the claim period.
+A refund period is set by the fundraiser which signals the end of a fundraising campaign without the fundraising goal having been met. 
+Doners have the option of getting a refund on their contribution via the PiggiFund UI. The fundraier is not able to withdraw donations yet. 
+Doners are still able to make contributions.
       </ListItemText>   
     </ListItem>
 
@@ -109,8 +109,9 @@ for purposes like sending an token based award- like an NFT.
       <CardHeader title="PiggiFund UI"/>
       <CardContent>
        <Typography>
-    Visualize and make deposits/withdraws into a PiggiFund contract with the PiggiFund UI. The innovative system detects the user's MetaMask address
-    and will conditionaly render buttons avaiable for refunding or withdrawing depending on the timeframe.
+    Visualize and make deposits/withdraws into a PiggiFund contract using the PiggiFund UI. The innovative system detects the user's MetaMask address
+    and will conditionaly render buttons avaiable for deposit, refund or withdraw depending on who the user is and what time period the fundraising 
+    campaign is in.
        </Typography>
        <ComputerIcon sx={{fontSize:'900%',marginTop:2}} color="primary"/>
       
