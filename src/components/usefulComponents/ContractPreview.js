@@ -186,16 +186,16 @@ const ContractData = () =>{
      <Typography sx={{ fontSize: 20, fontWeight: 600 }} variant="h1">Contract Summary:</Typography>
       <List>
       <ListItem>
-          <ListItemText>Funding Goal: {fundingGoal} ETH-> If goal met no more contributions can be made and owner can claim funds.</ListItemText>
+          <ListItemText>Funding Goal Is {fundingGoal} ETH: If goal met, no more contributions can be made and owner can claim funds.</ListItemText>
       </ListItem>
       <ListItem>
           <ListItemText>Funding Description: {fundingDescription}</ListItemText>
       </ListItem>
       <ListItem>
-          <ListItemText>Funding Period Ends-> If funding goal missed, doner option for refund in {returnFundsMin} min</ListItemText>
+          <ListItemText>Recover Period Begins: As long as funding goal not reached, doner option for refund in {returnFundsMin} min</ListItemText>
       </ListItem>
       <ListItem>
-          <ListItemText>Contract Close-> Donors can no longer get a refund. Contract owner can claim funds in {claimFundsMin} min</ListItemText>
+          <ListItemText>Claim Period Begins: Donors can no longer get a refund. Contract owner can claim funds in {claimFundsMin} min</ListItemText>
       </ListItem>
       </List>    
       </Card>                                  
